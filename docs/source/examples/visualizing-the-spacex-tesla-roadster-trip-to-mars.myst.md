@@ -33,7 +33,6 @@ roadster = Ephem.from_horizons(
     epochs=time_range(EPOCH, end=EPOCH + 360 * u.day),
     attractor=Sun,
     plane=Planes.EARTH_ECLIPTIC,
-    id_type="majorbody",
 );
 roadster
 ```
