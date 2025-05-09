@@ -593,6 +593,55 @@ class Orbit(OrbitCreationMixin):
         # We call .sample() at the end to retrieve the coordinates for the same epochs
         return ephem.sample()
 
+    def sample_with_anomaly(
+        self, values=100, *, min_anomaly=None, max_anomaly=None
+    ):
+        r"""Samples an orbit to some specified time values.
+
+        .. versionadded:: 0.8.0
+
+        Parameters
+        ----------
+        values : int
+            Number of interval points (default to 100).
+        min_anomaly, max_anomaly : ~astropy.units.Quantity, optional
+            Anomaly limits to sample the orbit.
+            For elliptic orbits the default will be :math:`E \in \left[0, 2 \pi \right]`,
+            and for hyperbolic orbits it will be :math:`\nu \in \left[-\nu_c, \nu_c \right]`,
+            where :math:`\nu_c` is either the current true anomaly
+            or a value that corresponds to :math:`r = 3p`.
+
+        Returns
+        -------
+        positions: ~astropy.coordinates.CartesianRepresentation
+            Array of x, y, z positions.
+
+        Notes
+        -----
+        When specifying a number of points, the initial and final
+        position is present twice inside the result (first and
+        last row). This is more useful for plotting.
+
+        Examples
+        --------
+        >>> from astropy import units as u
+        >>> from boinor.examples import iss
+        >>> iss.sample()  # doctest: +ELLIPSIS
+        <CartesianRepresentation (x, y, z) in km ...
+        >>> iss.sample(10)  # doctest: +ELLIPSIS
+        <CartesianRepresentation (x, y, z) in km ...
+
+        """
+        ephem = self.to_ephem(
+            strategy=TrueAnomalyBounds(
+                min_nu=min_anomaly,
+                max_nu=max_anomaly,
+                num_values=values,
+            ),
+        )
+        # We call .sample() at the end to retrieve the coordinates for the same epochs
+        return ephem.sample()
+
     def apply_maneuver(self, maneuver, intermediate=False):
         """Returns resulting `Orbit` after applying maneuver to self.
 

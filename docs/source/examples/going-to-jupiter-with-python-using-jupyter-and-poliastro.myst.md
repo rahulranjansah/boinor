@@ -95,7 +95,7 @@ plotter = OrbitPlotter()
 plotter.plot_body_orbit(Earth, ic1_end.epoch, label="Earth at end of flyby")
 plotter.plot_maneuver(orb_e0, man, color="C1", label="Initial impulse")
 plotter.plot_trajectory(
-    ic1.sample(max_anomaly=180 * u.deg),
+    ic1.sample_with_anomaly(max_anomaly=180 * u.deg),
     label="Inner cruise 1",
     color="C1",
 );
@@ -142,7 +142,7 @@ plotter.plot_body_orbit(
 )
 plotter.plot_maneuver(orb_e0, man, color="C1", label="Initial impulse")
 plotter.plot_trajectory(
-    ic1.sample(max_anomaly=180 * u.deg), label="Inner cruise 1", color="C1"
+    ic1.sample_with_anomaly(max_anomaly=180 * u.deg), label="Inner cruise 1", color="C1"
 )
 plotter.plot_maneuver(
     ic1_end,
@@ -193,7 +193,7 @@ plotter.plot_body_orbit(
 )
 plotter.plot_maneuver(orb_e0, man, color="C1", label="Initial impulse")
 plotter.plot_trajectory(
-    ic1.sample(max_anomaly=180 * u.deg), label="Inner cruise 1", color="C1"
+    ic1.sample_with_anomaly(max_anomaly=180 * u.deg), label="Inner cruise 1", color="C1"
 )
 plotter.plot_maneuver(
     ic1_end,
