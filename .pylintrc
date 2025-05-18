@@ -415,9 +415,9 @@ confidence=HIGH,
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
 ##
-# XXX everything after use-symbolic-message-instead is own definition
 # there is nothing wrong with messages up until line-too-long
 # at the moment I prefer not to fix them
+# XXX no-member does not seem to work for astropy.units, so disabling it for now
 disable=too-many-locals,
         too-many-arguments,
         too-many-statements,
@@ -432,6 +432,7 @@ disable=too-many-locals,
         missing-module-docstring,
         R0801,
         fixme,
+        no-member,
         line-too-long
 
 
