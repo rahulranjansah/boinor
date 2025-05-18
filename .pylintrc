@@ -281,7 +281,7 @@ ignored-parents=
 max-args=20
 
 # Maximum number of attributes for a class (see R0902).
-max-attributes=7
+max-attributes=16
 
 # Maximum number of boolean expressions in an if statement (see R0916).
 max-bool-expr=5
@@ -419,7 +419,6 @@ confidence=HIGH,
 # at the moment I prefer not to fix them
 # XXX no-member does not seem to work for astropy.units, so disabling it for now
 disable=too-many-public-methods,
-        too-many-instance-attributes,
         too-few-public-methods,
         too-many-positional-arguments,
         invalid-name,
