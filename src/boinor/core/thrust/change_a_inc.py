@@ -17,9 +17,11 @@ def extra_quantities(k, a_0, a_f, inc_0, inc_f, f):
 
 
 @jit
-def beta(t, V_0, f, beta_0):
+def beta(t, V_0, f, beta_0_parameter):
     """Compute yaw angle (β) as a function of time and the problem parameters."""
-    return np.arctan2(V_0 * np.sin(beta_0), V_0 * np.cos(beta_0) - f * t)
+    return np.arctan2(
+        V_0 * np.sin(beta_0_parameter), V_0 * np.cos(beta_0_parameter) - f * t
+    )
 
 
 @jit
@@ -43,14 +45,14 @@ def compute_parameters(k, a_0, a_f, inc_0, inc_f):
 
 
 @jit
-def delta_V(V_0, V_f, beta_0, inc_0, inc_f):
+def delta_V(V_0, V_f, beta_0_parameter, inc_0, inc_f):
     """Compute required increment of velocity."""
     delta_i_f = abs(inc_f - inc_0)
     if delta_i_f == 0:
         return abs(V_f - V_0)
-    return V_0 * np.cos(beta_0) - V_0 * np.sin(beta_0) / np.tan(
-        np.pi / 2 * delta_i_f + beta_0
-    )
+    return V_0 * np.cos(beta_0_parameter) - V_0 * np.sin(
+        beta_0_parameter
+    ) / np.tan(np.pi / 2 * delta_i_f + beta_0_parameter)
 
 
 def change_a_inc(k, a_0, a_f, inc_0, inc_f, f):
@@ -99,5 +101,5 @@ def change_a_inc(k, a_0, a_f, inc_0, inc_f, f):
         accel_v = f * (np.cos(beta_) * t_ + np.sin(beta_) * w_)
         return accel_v
 
-    delta_V, t_f = extra_quantities(k, a_0, a_f, inc_0, inc_f, f)
-    return a_d, delta_V, t_f
+    delta_V_local, t_f = extra_quantities(k, a_0, a_f, inc_0, inc_f, f)
+    return a_d, delta_V_local, t_f
