@@ -298,7 +298,7 @@ class Plotly2D(BasePlotly):
             An object representing the trace of the marker in the scene.
 
         """
-        marker_style = dict(size=size, color=color, symbol=marker_symbol)
+        marker_style = {"size": size, "color": color, "symbol": marker_symbol}
         marker_trace = go.Scatter(
             x=position[0],
             y=position[1],
@@ -345,7 +345,7 @@ class Plotly2D(BasePlotly):
             x1=(position[0] + radius),
             y1=(position[1] + radius),
             fillcolor=color,
-            line=dict(color=color),
+            line={"color": color},
             opacity=1,
         )
         self.layout.shapes += (shape,)
@@ -381,7 +381,7 @@ class Plotly2D(BasePlotly):
         coordinates_trace = go.Scatter(
             x=x,
             y=y,
-            line=dict(color=colors[0], width=5, dash=linestyle),
+            line={"color": colors[0], "width": 5, "dash": linestyle},
             mode="lines",
             name=label,
             # XXX showlegend=False if label is None else True,
@@ -428,9 +428,7 @@ class Plotly3D(BasePlotly):
         # Declare the layout and attach it to the figure
         layout = go.Layout(
             autosize=True,
-            scene=dict(
-                aspectmode="data",
-            ),
+            scene={"aspectmode": "data"},
             template=theme,
         )
         super().__init__(figure, layout)
@@ -457,7 +455,7 @@ class Plotly3D(BasePlotly):
             An object representing the trace of the marker in the scene.
 
         """
-        marker_style = dict(size=size, color=color, symbol=marker_symbol)
+        marker_style = {"size": size, "color": color, "symbol": marker_symbol}
         marker_trace = go.Scatter3d(
             x=position[0],
             y=position[1],
@@ -535,7 +533,7 @@ class Plotly3D(BasePlotly):
             x=coordinates[0],
             y=coordinates[1],
             z=coordinates[2],
-            line=dict(color=colors[0], width=5, dash=linestyle),
+            line={"color": colors[0], "width": 5, "dash": linestyle},
             mode="lines",
             name=label,
             # XXX showlegend=False if label is None else True,
@@ -555,9 +553,9 @@ class Plotly3D(BasePlotly):
         """
         self.figure.update_layout(
             scene=dict(
-                xaxis=dict(title=f"x ({length_scale_units.name})"),
-                yaxis=dict(title=f"y ({length_scale_units.name})"),
-                zaxis=dict(title=f"z ({length_scale_units.name})"),
+                xaxis={"title": f"x ({length_scale_units.name})"},
+                yaxis={"title": f"y ({length_scale_units.name})"},
+                zaxis={"title": f"z ({length_scale_units.name})"},
             )
         )
 
