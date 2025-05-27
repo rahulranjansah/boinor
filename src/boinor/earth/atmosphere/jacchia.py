@@ -27,6 +27,17 @@ class Jacchia77:
         self.x = 0.0
         self.y = 0.0
         self.Texo = Texo
+        # set some values to silence pylint
+        self.Z = 0 * u.km
+        self.T = 273.15 * u.K
+        self.CN2 = np.zeros(3) * 1e6 * (u.m) ** -3
+        self.CO2 = np.zeros(3) * 1e6 * (u.m) ** -3
+        self.CO = np.zeros(3) * 1e6 * (u.m) ** -3
+        self.CAr = np.zeros(3) * 1e6 * (u.m) ** -3
+        self.CHe = np.zeros(3) * 1e6 * (u.m) ** -3
+        self.CH = np.zeros(3) * 1e6 * (u.m) ** -3
+        self.CM = np.zeros(3) * 1e6 * (u.m) ** -3
+        self.WM = np.zeros(3) * 1e6 * (u.m) ** -3
 
     def _altitude_profile(self, alt):
         """set altitude profile"""
