@@ -7,7 +7,12 @@
 - Deprecating Python 3.8
 - As numpy 2.0 does not work with Python 3.9, deprecation of Python 3.9 started.
 - Taking care of most pylint issues (except some of too-many-* or *docstring).
-- a github funding body was added, don't hesitate to use it :-).
+- github funding body was added, don't hesitate to use it :-).
+- Introduce vulture to get information about dead code.
+- Introduce interrogate to get information about docstring usage.
+- Fixing latex/pdf creation of documentation (Thorsten Alteholz and @MLopez-Ibanez).
+- All jupyter notebooks can be built again.
+- Modernize ruff setup by @MLopez-Ibanez.
 
 ### Coverage
 
@@ -16,11 +21,13 @@ The code coverage increased from 91.45% to 96.16%.
 
 ### Bugs fixed
 
-- obtain FAIR badge ({github}`poliastro issue #1320 <poliastro/poliastro#1320>`)
-- unable to install poliastro through spyder ({github}`poliastro issue #1604 <poliastro/poliastro#1604>`)
+- Obtain FAIR badge ({github}`poliastro issue #1320 <poliastro/poliastro#1320>`).
+- Unable to install poliastro through spyder ({github}`poliastro issue #1604 <poliastro/poliastro#1604>`).
 - Jacchia77 (U.S Standard Atmosphere 1962) very likely broken (and untested) ({github}`poliastro issue #1562 <poliastro/poliastro#1562>`)
   This bug is not yet completely fixed, see ({github}`boinor issue #7 <boinor/boinor#7>`)
-- update matplotlib.py to use .get_next_color ({github}`hapsira issue #15 <pleiszenburg/hapsira#15>`)
+- Update matplotlib.py to use .get_next_color ({github}`hapsira issue #15 <pleiszenburg/hapsira#15>`).
+- Fix units of return value of ClassicalState.to_equinoctial() and ModifiedEquinoctialState.to_value().
+- Fix some typos detected by tests.
 
 ### Pull requests
 
@@ -31,6 +38,8 @@ The code coverage increased from 91.45% to 96.16%.
 - adding libration point calculation using newton raphson method ({github}`poliastro issue #1573 <poliastro/poliastro#1573>`)
 - enable faster parallel testing ({github}`poliastro issue #1556 <poliastro/poliastro#1556>`)
 - all PRs from poliastro are either merged, are not finished or are to old to cleanly apply
+- Use correct spelling of Deimos ({github}`boinor issue #14 <boinor/boinor#14>`) created by @MLopez-Ibanez.
+- Show Numpy 2.0 VisibleDecprecationWarnings ({github}`boinor issue #16 <boinor/boinor#16>`) supplied by @MLopez-Ibanez.
 
 ### Contributors
 
