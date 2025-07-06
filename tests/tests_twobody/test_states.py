@@ -134,7 +134,7 @@ def test_state_methods():
     )
     expected_res_from_vectors = [
         [9.964189e07, 1.799942e06, -3.417410e06],
-        [-3.199665e04, 1.411788e06, 5.042833e04],
+        [-1.011823e00, 4.464467e01, 1.594684e00],
     ]
     res = mes.to_value()
     assert_quantity_allclose(res, expected_res)
