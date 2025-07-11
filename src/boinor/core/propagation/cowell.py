@@ -40,9 +40,7 @@ def cowell(k, r, v, tofs, rtol=1e-11, *, events=None, f=func_twobody):
 
     rrs = []
     vvs = []
-    # XXX org:  for i in range(len(tofs)):
     for i, t in enumerate(tofs):
-        # XXX org: t = tofs[i]
         y = result.sol(t)
         rrs.append(y[:3])
         vvs.append(y[3:])
