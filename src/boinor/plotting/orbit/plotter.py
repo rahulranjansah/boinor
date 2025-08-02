@@ -602,9 +602,6 @@ class OrbitPlotter:
                     )
                 ],
             )
-            # XXX this function is only used in tests and does not use
-            #    a return value
-            # XXX todo is that correct: return [(impulse_label, impulse_lines)]
             return
 
         # Declare for holding (label, lines) for each impulse and trajectory
