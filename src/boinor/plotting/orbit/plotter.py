@@ -587,7 +587,7 @@ class OrbitPlotter:
         else:
             final_phase_position = final_phase.r
 
-        if not len(maneuver_phases):
+        if len(maneuver_phases) == 0:
             # For single-impulse maneuver only draw the impulse marker
             impulse_label = f"Impulse - {label}"
             impulse_lines = (
