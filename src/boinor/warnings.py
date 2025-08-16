@@ -1,6 +1,6 @@
 class TimeScaleWarning(UserWarning):
-    pass
+    """class to replace the generic UserWarning by a more descriptive TimeScaleWarning"""
 
 
 class PatchedConicsWarning(UserWarning):
-    pass
+    """class to replace the generic UserWarning by a more descriptive PatchedConicsWarning"""

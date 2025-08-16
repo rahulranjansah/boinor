@@ -73,11 +73,15 @@ def sample_open(
 
 
 class SamplingStrategy:
+    """parent class just for definition of available methods"""
+
     def sample(self, orbit):
         raise NotImplementedError
 
 
 class EpochsArray(SamplingStrategy):
+    """sample orbit created from a list of epochs"""
+
     def __init__(self, epochs, method=FarnocchiaPropagator()):
         self._epochs = epochs
         self._method = method
@@ -93,7 +97,7 @@ class EpochsArray(SamplingStrategy):
         # However, we are also returning the epochs
         # (since computing them here is more efficient than doing it from the outside)
         # but there are open questions around StateArrays and epochs.
-        # See discussion at https://github.com/boinor/boinor/pull/1492
+        # See discussion at https://github.com/poliastro/poliastro/pull/1492
         cartesian = CartesianRepresentation(
             rr, differentials=CartesianDifferential(vv, xyz_axis=1), xyz_axis=1
         )
@@ -101,6 +105,10 @@ class EpochsArray(SamplingStrategy):
 
 
 class TrueAnomalyBounds(SamplingStrategy):
+    """sample orbit between bounds set by true anomaly
+    as default, orbit consists of 100 samples
+    """
+
     def __init__(
         self, min_nu=None, max_nu=None, num_values=100, hyp_r_factor=3.0
     ):
@@ -174,6 +182,12 @@ class TrueAnomalyBounds(SamplingStrategy):
 
 
 class EpochBounds(SamplingStrategy):
+    """sample orbit between bounds set with min and max epoch
+    bounds are converted to true anomaly and the sample is created
+    with class TrueAnomalyBounds()
+    as default  orbit consists of 100 samples
+    """
+
     def __init__(self, min_epoch=None, max_epoch=None, num_values=100):
         self._min_epoch = min_epoch
         self._max_epoch = max_epoch
