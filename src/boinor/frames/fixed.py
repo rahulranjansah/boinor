@@ -61,6 +61,8 @@ ITRS = _ITRS
 
 
 class _PlanetaryFixed(BaseRADecFrame):
+    """non-inertial, body-fixed reference frames are tied to a named body and rotate with it"""
+
     obstime = TimeAttribute(default=DEFAULT_OBSTIME)
 
     def __new__(cls, *args, **kwargs):
@@ -153,6 +155,8 @@ class _PlanetaryFixed(BaseRADecFrame):
 
 
 class SunFixed(_PlanetaryFixed):
+    """non-inertial, body-fixed reference frame: Sun"""
+
     body = Sun
     equatorial = HCRS
 
@@ -163,6 +167,8 @@ class SunFixed(_PlanetaryFixed):
 
 
 class MercuryFixed(_PlanetaryFixed):
+    """non-inertial, body-fixed reference frame: Mercury"""
+
     body = Mercury
     equatorial = MercuryICRS
 
@@ -173,6 +179,8 @@ class MercuryFixed(_PlanetaryFixed):
 
 
 class VenusFixed(_PlanetaryFixed):
+    """non-inertial, body-fixed reference frame: Venus"""
+
     body = Venus
     equatorial = VenusICRS
 
@@ -183,6 +191,8 @@ class VenusFixed(_PlanetaryFixed):
 
 
 class MarsFixed(_PlanetaryFixed):
+    """non-inertial, body-fixed reference frame: Mars"""
+
     body = Mars
     equatorial = MarsICRS
 
@@ -193,6 +203,8 @@ class MarsFixed(_PlanetaryFixed):
 
 
 class JupiterFixed(_PlanetaryFixed):
+    """non-inertial, body-fixed reference frame: Jupiter"""
+
     body = Jupiter
     equatorial = JupiterICRS
 
@@ -203,6 +215,8 @@ class JupiterFixed(_PlanetaryFixed):
 
 
 class SaturnFixed(_PlanetaryFixed):
+    """non-inertial, body-fixed reference frame: Saturn"""
+
     body = Saturn
     equatorial = SaturnICRS
 
@@ -213,6 +227,8 @@ class SaturnFixed(_PlanetaryFixed):
 
 
 class UranusFixed(_PlanetaryFixed):
+    """non-inertial, body-fixed reference frame: Uranus"""
+
     body = Uranus
     equatorial = UranusICRS
 
@@ -223,6 +239,8 @@ class UranusFixed(_PlanetaryFixed):
 
 
 class NeptuneFixed(_PlanetaryFixed):
+    """non-inertial, body-fixed reference frame: Neptune"""
+
     body = Neptune
     equatorial = NeptuneICRS
 
@@ -233,6 +251,8 @@ class NeptuneFixed(_PlanetaryFixed):
 
 
 class MoonFixed(_PlanetaryFixed):
+    """non-inertial, body-fixed reference frame: Moon"""
+
     body = Moon
     equatorial = MoonICRS
 

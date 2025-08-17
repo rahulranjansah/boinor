@@ -3,6 +3,8 @@ import sys
 
 # https://stackoverflow.com/a/48100440
 class OldPropagatorModule(sys.modules[__name__].__class__):
+    """dummy class to remind everybody of the new way to handle propagators"""
+
     def __call__(self):
         raise ImportError(
             "Propagator functions are gone, use *Propagator classes instead. "

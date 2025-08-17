@@ -47,6 +47,8 @@ GCRS = _GCRS
 
 
 class _PlanetaryICRS(BaseRADecFrame):
+    """class to convert ICRS to planet"""
+
     obstime = TimeAttribute(default=DEFAULT_OBSTIME)
 
     def __new__(cls, *args, **kwargs):
@@ -121,34 +123,50 @@ class _PlanetaryICRS(BaseRADecFrame):
 
 
 class MercuryICRS(_PlanetaryICRS):
+    """class to convert ICRS to center of Mercury"""
+
     body = Mercury
 
 
 class VenusICRS(_PlanetaryICRS):
+    """class to convert ICRS to center of Venus"""
+
     body = Venus
 
 
 class MarsICRS(_PlanetaryICRS):
+    """class to convert ICRS to center of Mars"""
+
     body = Mars
 
 
 class JupiterICRS(_PlanetaryICRS):
+    """class to convert ICRS to center of Jupiter"""
+
     body = Jupiter
 
 
 class SaturnICRS(_PlanetaryICRS):
+    """class to convert ICRS to center of Saturn"""
+
     body = Saturn
 
 
 class UranusICRS(_PlanetaryICRS):
+    """class to convert ICRS to center of Uranus"""
+
     body = Uranus
 
 
 class NeptuneICRS(_PlanetaryICRS):
+    """class to convert ICRS to center of Neptune"""
+
     body = Neptune
 
 
 class MoonICRS(_PlanetaryICRS):
+    """class to convert ICRS to center of Moon"""
+
     body = Moon
 
 
