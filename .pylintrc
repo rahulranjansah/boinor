@@ -423,7 +423,6 @@ disable=too-many-positional-arguments,
         invalid-name,
         unused-argument,
         missing-function-docstring,
-        missing-module-docstring,
         R0801,
         no-member,
         line-too-long

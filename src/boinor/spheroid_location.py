@@ -1,3 +1,4 @@
+"""Handling a ground station on an oblate ellipsoid."""
 import astropy.units as u
 import numpy as np
 

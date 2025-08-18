@@ -1,3 +1,4 @@
+"""module to prepare orbitary data for displaying them with Cesium in a browser."""
 from datetime import timezone
 
 from astropy import units as u

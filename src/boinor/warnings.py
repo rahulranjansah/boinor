@@ -1,3 +1,6 @@
+"""replace the generic UserWarning by a more descriptive warning"""
+
+
 class TimeScaleWarning(UserWarning):
     """class to replace the generic UserWarning by a more descriptive TimeScaleWarning"""
 

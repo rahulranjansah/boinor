@@ -1,3 +1,5 @@
+"""module to handle ecliptic mean elements of a body"""
+
 from astropy import units as u
 from astropy.coordinates.solar_system import PLAN94_BODY_NAME_TO_PLANET_INDEX
 import erfa
