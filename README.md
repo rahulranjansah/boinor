@@ -2,7 +2,7 @@
 
 | **Name**  |                        **Website**                         |                                                         **Authors**                                                       |                                      **Maintainers**                                      |                     **Version**                      |
 |:---------:|:----------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------:|:----------------------------------------------------:|
-| boinor | [https://www.boinor.space](https://www.boinor.space) | [Thorsten Alteholz](https://orcid.org/0000-0002-9570-7046) [![orcid_badge]](https://orcid.org/0000-0002-9570-7046) | [boinor development team](https://github.com/boinor/boinor/blob/main/AUTHORS.md) | [0.19.0](https://github.com/boinor/boinor/) |
+| boinor | [https://www.boinor.space](https://www.boinor.space) | [Thorsten Alteholz](https://orcid.org/0000-0002-9570-7046) [![orcid_badge]](https://orcid.org/0000-0002-9570-7046) | [boinor development team](https://github.com/boinor/boinor/blob/main/AUTHORS.md) | [0.20.0](https://github.com/boinor/boinor/) |
 
 [![boinor_badge]](https://github.com/boinor/boinor)
 [![CircleCI_badge]]()
@@ -40,7 +40,7 @@ but can also be used to analyze artificial satellites in Low-Earth Orbit (LEO).
 If you use boinor on your project, please [let us know]. Use the DOI to cite
 boinor in your publications:
 
-    Thorsten Alteholz, et al.. (2025). boinor: boinor 0.19.0. Zenodo. 10.5281/zenodo.12809724
+    Thorsten Alteholz, et al.. (2025). boinor: boinor 0.20.0. Zenodo. 10.5281/zenodo.12809724
 
 ![Multiple examples image](https://github.com/boinor/boinor/raw/main/docs/source/_static/examples.png)
 
@@ -209,7 +209,7 @@ If you would like to support boinor, consider [becoming a backer] or
 [alternative installation methods]: https://docs.boinor.space/en/latest/installation.html#alternative-installation-methods
 [commonly used Astrodynamics software]: https://docs.boinor.space/en/latest/related.html
 [Development documentation]: https://docs.boinor.space/en/latest/
-[Stable documentation]: https://docs.boinor.space/en/0.19.0/
+[Stable documentation]: https://docs.boinor.space/en/0.20.0/
 [Read the docs]: https://readthedocs.org
 [binder]: https://mybinder.org/
 [issue tracker]: https://github.com/boinor/boinor/issues 
