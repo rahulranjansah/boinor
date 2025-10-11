@@ -60,7 +60,7 @@ dependencies = [
     "numba >=0.61.0 ; python_version>='3.10'",
     "numpy >= 2.0.2",
     "pandas",
-    "plotly >=4.0,<6",
+    "plotly >=4.0,<7",
     "pyerfa",
     "scipy >=1.4.0",
 ]
