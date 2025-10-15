@@ -1,3 +1,5 @@
+""" calculate Ephemerides of objects"""
+
 from warnings import warn
 
 from astropy import units as u
