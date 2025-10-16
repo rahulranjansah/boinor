@@ -1,5 +1,6 @@
 """Orbital maneuvers."""
 from astropy import units as u
+import numpy as np
 
 from boinor.core.maneuver import (
     bielliptic as bielliptic_fast,
@@ -202,19 +203,16 @@ class Maneuver:
     def get_total_cost(self):
         """Returns total cost of the maneuver (km / s)."""
         dvs = [norm(dv) for dv in self._dvs]
-        # original: return sum(dvs, 0 * u.km / u.s)
-        # todo use the other calculation (.to_value () fails)
         return sum(dvs, 0 * u.km / u.s)
 
-        # # todo: use only one way to calculate this
-        # tc = sum(dvs, 0 * u.km / u.s)
-        # tc2 = (
-        #     np.linalg.norm(self._dvs.to_value(u.km / u.s), axis=1).sum()
-        #     * u.km
-        #     / u.s
-        # )
-        # assert np.allclose(tc.value, tc2.value)
-        # return tc2
+    def get_total_cost_optimized(self):
+        """Returns total cost of the maneuver (km / s) in optimized version."""
+        tc2 = (
+             np.linalg.norm(self._dvs, axis=1).sum()
+             * u.m
+             / u.s
+         )
+        return tc2
 
     @classmethod
     @u.quantity_input(max_delta_r=u.km)
