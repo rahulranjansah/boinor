@@ -9,7 +9,7 @@ from boinor.sensors import (
 )
 
 
-# Example taken from "Fundamentals of Astrodynamics and Applications", 4th ed (2013)" by David A. Vallado, pages 859-860
+# Example taken from :cite:t:`Vallado2013`, pages 859-860
 @pytest.mark.parametrize(
     "altitude, fov, boresight, expected_lat_lon_max, expected_lat_lon_min",
     [
@@ -40,7 +40,7 @@ def test_max_and_min_ground_range(
     assert_quantity_allclose(lat_lon_min, expected_lat_lon_min, rtol=1e-4)
 
 
-# Example taken from "Fundamentals of Astrodynamics and Applications", 4th ed (2013)" by David A. Vallado, pages 859-860
+# Example taken from :cite:t:`Vallado2013`, pages 859-860
 @pytest.mark.parametrize(
     "altitude, fov, boresight, azimuth, nadir_lat, nadir_lon, expected_ground_range_diff, expected_target_lat, expected_target_lon",
     [
