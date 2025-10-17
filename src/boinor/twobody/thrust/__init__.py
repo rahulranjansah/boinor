@@ -1,3 +1,4 @@
+"""Sub-package of twobody holding all modules related to thrust"""
 from boinor.twobody.thrust.change_a_inc import change_a_inc
 from boinor.twobody.thrust.change_argp import change_argp
 from boinor.twobody.thrust.change_ecc_inc import change_ecc_inc

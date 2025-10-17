@@ -1,3 +1,4 @@
+"""Low level thrust modules"""
 from boinor.core.thrust.change_a_inc import change_a_inc
 from boinor.core.thrust.change_argp import change_argp
 from boinor.core.thrust.change_ecc_inc import change_ecc_inc

@@ -1,3 +1,4 @@
+""" Sub-package holding all modules related to boinor constants"""
 from boinor.constants.general import (
     J2000,
     J2000_TDB,
