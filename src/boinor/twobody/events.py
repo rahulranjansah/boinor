@@ -1,3 +1,4 @@
+"""module handling events for sub-package twobody"""
 from warnings import warn
 
 from astropy import units as u
