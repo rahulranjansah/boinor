@@ -1,3 +1,4 @@
+"""module related to propagation of an orbit using the recursive series approximation method in the twobody sub-package"""
 import sys
 
 from astropy import units as u
