@@ -1,3 +1,4 @@
+"""module for special functions in sub package _math"""
 from math import gamma
 
 from numba import njit as jit
