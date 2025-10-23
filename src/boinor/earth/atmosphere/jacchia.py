@@ -1,3 +1,4 @@
+"""module jacchia of sub-package atmosphere of sub-package earth"""
 from astropy import units as u
 import numpy as np
 
