@@ -1,3 +1,4 @@
+"""module to take care of thrust when semimajor axis and inclination change at the same time"""
 from astropy import units as u
 
 from boinor.core.thrust.change_a_inc import (

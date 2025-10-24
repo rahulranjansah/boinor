@@ -1,3 +1,8 @@
+"""module related to scalar orbit creation in the twobody sub-package"""
+
+# I am not sure whether http://harmoniouspalette.com/ScalarOrbitConcepts.html
+# helps to understand this
+
 from functools import cached_property
 from warnings import warn
 
@@ -10,10 +15,7 @@ from astropy.coordinates import (
 )
 import numpy as np
 
-# XXX avoid cycle import: from boinor.bodies import Earth
 from boinor.core.events import elevation_function as elevation_function_fast
-
-# XXX avoid cycle import: from boinor.ephem import Ephem
 from boinor.frames.util import get_frame
 from boinor.threebody.soi import laplace_radius
 from boinor.twobody.elements import eccentricity_vector, energy, t_p

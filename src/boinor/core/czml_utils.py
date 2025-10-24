@@ -1,3 +1,4 @@
+"""module of low level functions for displaying data with Cesium in a browser."""
 from numba import njit as jit
 import numpy as np
 
