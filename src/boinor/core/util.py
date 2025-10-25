@@ -1,3 +1,4 @@
+"""module containing auxiliary functions for the core sub-package"""
 from numba import njit as jit
 import numpy as np
 from numpy import cos, sin

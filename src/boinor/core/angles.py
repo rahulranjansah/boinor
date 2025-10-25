@@ -1,3 +1,4 @@
+"""module containing functions related to angles in the core sub-package"""
 from numba import njit as jit
 import numpy as np
 
