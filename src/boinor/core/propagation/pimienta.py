@@ -1,3 +1,4 @@
+"""module related to propagation of an orbit using the method of Pimienta-Peñalver and John L. Crassidis in the core sub-package"""
 from numba import njit as jit
 import numpy as np
 

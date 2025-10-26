@@ -1,3 +1,4 @@
+"""module related to propagation of an orbit using Cowell's method in the core sub-package"""
 import numpy as np
 
 from boinor._math.ivp import DOP853, solve_ivp
