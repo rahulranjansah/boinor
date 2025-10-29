@@ -1,3 +1,4 @@
+"""module containing basic functions related to propagation in the core sub-package"""
 from numba import njit as jit
 import numpy as np
 

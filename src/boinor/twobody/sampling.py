@@ -1,3 +1,4 @@
+"""module related to sampling of open or closed orbits in the sub-package twobody"""
 from astropy import units as u
 from astropy.coordinates import CartesianDifferential, CartesianRepresentation
 import numpy as np

@@ -1,3 +1,4 @@
+"""module containing functions related to flybys in the threebody sub-package"""
 from astropy import units as u
 
 from boinor.core.flybys import compute_flyby as compute_flyby_fast
