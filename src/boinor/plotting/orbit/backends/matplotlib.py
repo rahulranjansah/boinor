@@ -71,10 +71,20 @@ class Matplotlib2D(OrbitPlotterBackend):
         if color is None:
             try:
                 # Updated HACK, see https://stackoverflow.com/a/78938755
-                color = self.ax._get_lines.get_next_color()
+                # The current state is stored in ax._get_lines.prop_cycler.
+                # There are no built-in methods to expose the "base list"
+                # for a generic itertools.cycle, and in particular
+                # for ax._get_lines.prop_cycler.
+                # there is no API available, so *meh*
+                color = (
+                    self.ax._get_lines.get_next_color()
+                )  # pylint: disable=protected-access
             except AttributeError:
                 # HACK: https://stackoverflow.com/a/13831816/554319
-                color = next(self.ax._get_lines.prop_cycler)["color"]
+                # there is no API available, so *meh*
+                color = next(self.ax._get_lines.prop_cycler)[
+                    "color"
+                ]  # pylint: disable=protected-access
 
         colors = [color, to_rgba(color, 0)] if trail else [color]
         return colors

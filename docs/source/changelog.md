@@ -4,7 +4,7 @@
 
 ### Highlights
 
--
+- pylint no longer complains about missing docstrings
 
 ### Coverage
 

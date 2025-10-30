@@ -1,3 +1,4 @@
+"""module containing functions related to sensors"""
 from astropy import units as u
 
 from boinor.core.sensors import (
