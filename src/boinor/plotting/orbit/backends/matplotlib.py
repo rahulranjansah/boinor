@@ -52,6 +52,8 @@ class Matplotlib2D(OrbitPlotterBackend):
         """
         return self.scene
 
+    # due to the hack below, this function was intentionally made protected
+    # use at your own risk!
     def _get_colors(self, color, trail):
         """Return the required list of colors if orbit trail is desired.
 
@@ -77,14 +79,16 @@ class Matplotlib2D(OrbitPlotterBackend):
                 # for ax._get_lines.prop_cycler.
                 # there is no API available, so *meh*
                 color = (
-                    self.ax._get_lines.get_next_color()
-                )  # pylint: disable=protected-access
+                    self.ax._get_lines.get_next_color()  # pylint: disable=protected-access
+                )
             except AttributeError:
                 # HACK: https://stackoverflow.com/a/13831816/554319
                 # there is no API available, so *meh*
-                color = next(self.ax._get_lines.prop_cycler)[
-                    "color"
-                ]  # pylint: disable=protected-access
+                # need to be two steps due to pylint
+                vtmp = (
+                    self.ax._get_lines.prop_cycler  # pylint: disable=protected-access
+                )
+                color = next(vtmp)["color"]
 
         colors = [color, to_rgba(color, 0)] if trail else [color]
         return colors

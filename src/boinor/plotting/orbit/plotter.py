@@ -718,8 +718,10 @@ class OrbitPlotter:
                 "set_attractor(Major_Body) or plot(orbit)"
             )
 
-        # Get orbit colors and label
-        colors = self.backend._get_colors(color=color, trail=trail)
+        # Get orbit colors and label (protected function, use on your own risk
+        colors = self.backend._get_colors(
+            color=color, trail=trail
+        )  # pylint: disable=protected-access
 
         # Force Cartesian representation for coordinates
         coordinates = coordinates.represent_as(CartesianRepresentation)

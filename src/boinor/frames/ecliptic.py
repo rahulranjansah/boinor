@@ -1,5 +1,9 @@
 """module containing functions related to ecliptic coordinates in the frames sub-package"""
 from astropy import units as u
+
+# import GCRS directly from astropy as the:
+#   from boinor.frames.equatorial import GCRS
+# would result in a cyclic import
 from astropy.coordinates import (
     GCRS,
     BaseEclipticFrame,
@@ -19,8 +23,6 @@ from astropy.coordinates.matrix_utilities import (
 )
 import erfa
 import numpy as np
-
-# XXX used from astropy: from boinor.frames.equatorial import GCRS
 
 __all__ = [
     "GeocentricSolarEcliptic",
