@@ -177,11 +177,7 @@ class Orbit(OrbitCreationMixin):
     @cached_property
     def h_vec(self):
         """Specific angular momentum vector."""
-        h_vec = (
-            np.cross(self.r.to_value(u.km), self.v.to_value(u.km / u.s))
-            * u.km**2
-            / u.s
-        )
+        h_vec = np.cross(self.r.to_value(u.km), self.v.to_value(u.km / u.s)) * u.km**2 / u.s
         return h_vec
 
     @cached_property
@@ -232,15 +228,10 @@ class Orbit(OrbitCreationMixin):
 
         if self.attractor == new_attractor.parent:  # "Sun -> Earth"
             r_soi = laplace_radius(new_attractor)
-            barycentric_position = get_body_barycentric(
-                new_attractor.name, self.epoch
-            )
+            barycentric_position = get_body_barycentric(new_attractor.name, self.epoch)
             # Transforming new_attractor's frame into frame of attractor
             new_attractor_r = (
-                ICRS(barycentric_position)
-                .transform_to(self.get_frame())
-                .represent_as(CartesianRepresentation)
-                .xyz
+                ICRS(barycentric_position).transform_to(self.get_frame()).represent_as(CartesianRepresentation).xyz
             )
             distance = norm(self.r - new_attractor_r)
         elif self.attractor.parent == new_attractor:  # "Earth -> Sun"
@@ -250,13 +241,9 @@ class Orbit(OrbitCreationMixin):
             raise ValueError("Cannot change to unrelated attractor")
 
         if distance > r_soi and not force:
-            raise ValueError(
-                "Orbit is out of new attractor's SOI. If required, use 'force=True'."
-            )
+            raise ValueError("Orbit is out of new attractor's SOI. If required, use 'force=True'.")
         if self.ecc < 1.0 and not force:
-            raise ValueError(
-                "Orbit will never leave the SOI of its current attractor"
-            )
+            raise ValueError("Orbit will never leave the SOI of its current attractor")
 
         warn(
             "Leaving the SOI of the current attractor",
@@ -265,9 +252,7 @@ class Orbit(OrbitCreationMixin):
         )
 
         new_frame = get_frame(new_attractor, self.plane, obstime=self.epoch)
-        coords = self.get_frame().realize_frame(
-            self.represent_as(CartesianRepresentation, CartesianDifferential)
-        )
+        coords = self.get_frame().realize_frame(self.represent_as(CartesianRepresentation, CartesianDifferential))
         ss = Orbit.from_coords(new_attractor, coords.transform_to(new_frame))
 
         return ss
@@ -284,9 +269,7 @@ class Orbit(OrbitCreationMixin):
         if plane is self.plane:
             return self
 
-        coords_orig = self.get_frame().realize_frame(
-            self.represent_as(CartesianRepresentation, CartesianDifferential)
-        )
+        coords_orig = self.get_frame().realize_frame(self.represent_as(CartesianRepresentation, CartesianDifferential))
 
         dest_frame = get_frame(self.attractor, plane, obstime=self.epoch)
 
@@ -330,9 +313,7 @@ class Orbit(OrbitCreationMixin):
         # As we do not know the differentials, we first convert to cartesian,
         # then let the frame represent_as do the rest
         # TODO: Perhaps this should be public API as well?
-        cartesian = CartesianRepresentation(
-            *self.r, differentials=CartesianDifferential(*self.v)
-        )
+        cartesian = CartesianRepresentation(*self.r, differentials=CartesianDifferential(*self.v))
 
         return cartesian.represent_as(representation, differential_class)
 
@@ -420,13 +401,9 @@ class Orbit(OrbitCreationMixin):
 
         """
         if value.ndim != 0:
-            raise ValueError(
-                "propagate only accepts scalar values for time of flight"
-            )
+            raise ValueError("propagate only accepts scalar values for time of flight")
 
-        if isinstance(value, time.Time) and not isinstance(
-            value, time.TimeDelta
-        ):
+        if isinstance(value, time.Time) and not isinstance(value, time.TimeDelta):
             time_of_flight = value - self.epoch
         else:
             # Works for both Quantity and TimeDelta objects
@@ -437,21 +414,15 @@ class Orbit(OrbitCreationMixin):
         if self.ecc < 1.0 and not (
             method.kind & PropagatorKind.ELLIPTIC
         ):  # pylint: disable=superfluous-parens   # for me it is easier to read this way
-            raise ValueError(
-                "Can not use an parabolic/hyperbolic propagator for elliptical/circular orbits."
-            )
+            raise ValueError("Can not use an parabolic/hyperbolic propagator for elliptical/circular orbits.")
         if self.ecc == 1.0 and not (
             method.kind & PropagatorKind.PARABOLIC
         ):  # pylint: disable=superfluous-parens  # for me it is easier to read this way
-            raise ValueError(
-                "Can not use an elliptic/hyperbolic propagator for parabolic orbits."
-            )
+            raise ValueError("Can not use an elliptic/hyperbolic propagator for parabolic orbits.")
         if self.ecc > 1.0 and not (
             method.kind & PropagatorKind.HYPERBOLIC
         ):  # pylint: disable=superfluous-parens  # for me it is easier to read this way
-            raise ValueError(
-                "Can not use an elliptic/parabolic propagator for hyperbolic orbits."
-            )
+            raise ValueError("Can not use an elliptic/parabolic propagator for hyperbolic orbits.")
 
         new_state = method.propagate(
             self.state,
@@ -536,9 +507,7 @@ class Orbit(OrbitCreationMixin):
 
         coordinates, epochs = strategy.sample(self)
         # HACK: avoid cylce import
-        from boinor.ephem import (  # pylint: disable=import-outside-toplevel
-            Ephem,
-        )
+        from boinor.ephem import Ephem  # pylint: disable=import-outside-toplevel
 
         return Ephem(coordinates, epochs, self.plane)
 
@@ -598,9 +567,7 @@ class Orbit(OrbitCreationMixin):
         # We call .sample() at the end to retrieve the coordinates for the same epochs
         return ephem.sample()
 
-    def sample_with_anomaly(
-        self, values=100, *, min_anomaly=None, max_anomaly=None
-    ):
+    def sample_with_anomaly(self, values=100, *, min_anomaly=None, max_anomaly=None):
         r"""Samples an orbit to some specified time values.
 
         .. versionadded:: 0.8.0
@@ -705,11 +672,7 @@ class Orbit(OrbitCreationMixin):
             Matplotlib2D,
             Plotly2D,
         )
-
-        # pylint: disable=C0415
-        from boinor.plotting.orbit.plotter import (
-            OrbitPlotter,
-        )
+        from boinor.plotting.orbit.plotter import OrbitPlotter  #  pylint: disable=C0415
 
         # Select the best backend depending if it is an interactive or batch
         # session
@@ -759,9 +722,7 @@ class Orbit(OrbitCreationMixin):
         be computed using `boinor.earth.util.get_local_sidereal_time`.
         """
         # HACK: to avoid cycle import
-        from boinor.bodies import (  # pylint: disable=import-outside-toplevel
-            Earth,
-        )
+        from boinor.bodies import Earth  # pylint: disable=import-outside-toplevel
 
         if self.attractor != Earth:
             raise NotImplementedError(

@@ -331,7 +331,8 @@ indent-after-paren=4
 indent-string='    '
 
 # Maximum number of characters on a single line.
-max-line-length=100
+# need to change parameter for black in .pre-commit-config.yaml as well
+max-line-length=120
 
 # Maximum number of lines in a module.
 max-module-lines=1000
