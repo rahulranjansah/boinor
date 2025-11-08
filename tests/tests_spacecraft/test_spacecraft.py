@@ -1,3 +1,4 @@
+"""module to test sub-package spacecraft"""
 from astropy import units as u
 from astropy.tests.helper import assert_quantity_allclose
 import numpy as np

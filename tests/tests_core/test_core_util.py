@@ -1,3 +1,4 @@
+"""tests related to the core sub-package util"""
 from functools import partial
 
 from astropy.coordinates.matrix_utilities import (

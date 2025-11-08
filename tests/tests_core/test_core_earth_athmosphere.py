@@ -1,3 +1,4 @@
+"""module related to tests of core sub-package earth_atmosphere"""
 from numpy.testing import assert_allclose
 
 from boinor.core.earth_atmosphere.util import (
