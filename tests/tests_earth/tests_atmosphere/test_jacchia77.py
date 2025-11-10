@@ -1,3 +1,4 @@
+"""tests related to module jacchia77 in sub-package atmosphere of earth"""
 from astropy import units as u
 from astropy.tests.helper import assert_quantity_allclose
 import numpy as np

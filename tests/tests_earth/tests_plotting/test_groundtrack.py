@@ -1,3 +1,4 @@
+"""tests related to module groundtrack in sub-package plotting of earth"""
 from astropy import time, units as u
 import pytest
 

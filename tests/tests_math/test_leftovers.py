@@ -1,5 +1,4 @@
-# these tests take care of special cases in _math that are
-# not covered by other tests
+"""these tests take care of special cases in _math that are not covered by other tests"""
 
 # from collections import OrderedDict
 # from functools import partial

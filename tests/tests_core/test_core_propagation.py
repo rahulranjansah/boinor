@@ -1,3 +1,4 @@
+"""tests related to propagation in sub-package core"""
 from astropy import units as u
 from astropy.tests.helper import assert_quantity_allclose
 import pytest

@@ -1,3 +1,4 @@
+"""tests related to module coesa62 in sub-package atmosphere of earth"""
 from astropy import units as u
 from astropy.tests.helper import assert_quantity_allclose
 from astropy.units import imperial
