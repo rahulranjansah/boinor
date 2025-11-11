@@ -1,3 +1,4 @@
+"""tests related to module gabbard in sub-package plotting"""
 from astropy import units as u
 from matplotlib import pyplot as plt
 import pytest

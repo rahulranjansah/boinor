@@ -1,3 +1,4 @@
+"""tests related to module propagation of sub-package twobody"""
 from astropy import time, units as u
 from astropy.coordinates import CartesianRepresentation
 from astropy.tests.helper import assert_quantity_allclose

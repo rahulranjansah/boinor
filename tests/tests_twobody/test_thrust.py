@@ -1,3 +1,4 @@
+"""tests related to module thurst of sub-package twobody"""
 from astropy import units as u
 import numpy as np
 from numpy.testing import assert_allclose

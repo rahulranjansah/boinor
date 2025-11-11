@@ -1,3 +1,4 @@
+"""tests related to module elements in sub-package twobody"""
 from astropy import units as u
 from astropy.tests.helper import assert_quantity_allclose
 from numpy.testing import assert_allclose

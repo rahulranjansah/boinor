@@ -1,3 +1,4 @@
+"""tests related to module porkchop in sub-package plotting"""
 from matplotlib import pyplot as plt
 from numpy.testing import assert_allclose
 import pytest
