@@ -8,6 +8,9 @@ from boinor.examples import iss
 from boinor.plotting.gabbard import GabbardPlotter
 from boinor.twobody import Orbit
 
+# even internal stuff needs to be tested
+# pylint: disable=protected-access
+
 
 def test_axes_labels_and_title():
     ax = plt.gca()

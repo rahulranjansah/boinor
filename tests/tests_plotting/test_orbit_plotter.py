@@ -23,6 +23,9 @@ from boinor.plotting.orbit.backends import (
 from boinor.twobody import Orbit
 from boinor.util import time_range
 
+# even internal stuff needs to be tested
+# pylint: disable=protected-access
+
 # @pytest.mark.parametrize("backend", SUPPORTED_ORBIT_PLOTTER_BACKENDS)
 # def test_get_figure_has_expected_properties(backend):
 #     plotter = OrbitPlotter(backend=backend_name)

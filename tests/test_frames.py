@@ -52,6 +52,9 @@ from boinor.frames.fixed import (
 )
 from boinor.frames.util import get_frame
 
+# even internal stuff needs to be tested
+# pylint: disable=protected-access
+
 
 @pytest.mark.parametrize(
     "body, frame",
