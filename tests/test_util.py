@@ -31,7 +31,7 @@ def test_time_range_spacing_num_values():
 
 def test_time_range_requires_keyword_arguments():
     with pytest.raises(TypeError) as excinfo:
-        time_range(0, 0)  # type: ignore
+        time_range(0, 0)  # type: ignore # pylint: disable=too-many-function-args
     assert "TypeError: time_range() takes 1 positional argument but" in excinfo.exconly()
 
 
