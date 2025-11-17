@@ -20,7 +20,8 @@ def test_porkchop_plotting():
     launch_span = time_range("2005-04-30", end="2005-10-07")
     arrival_span = time_range("2005-11-16", end="2006-12-21")
     porkchop_plot = PorkchopPlotter(Earth, Mars, launch_span, arrival_span, ax=ax)
-    dv_dpt, dv_arr, c3dpt, c3arr, tof = porkchop_plot.porkchop()
+    # original, maybe can be used later again: dv_dpt, dv_arr, c3dpt, c3arr, tof = porkchop_plot.porkchop()
+    _, _, _, _, _ = porkchop_plot.porkchop()
 
     return fig
 
@@ -34,7 +35,8 @@ def test_porkchop_deprecated_function():
 
     This test is needed to ensure that both methods still have the same results.
     """
-    fig, ax = plt.subplots()
+    # original, maybe can be used later again: fig, ax = plt.subplots()
+    _, ax = plt.subplots()
 
     launch_span = time_range("2005-04-30", end="2005-10-07")
     arrival_span = time_range("2005-11-16", end="2006-12-21")

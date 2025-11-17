@@ -112,7 +112,7 @@ def test_penumbra_event_not_triggering_is_ok():
 
     penumbra_event = PenumbraEvent(orbit)
     method = CowellPropagator(events=[penumbra_event])
-    rr, _ = method.propagate_many(
+    _, _ = method.propagate_many(
         orbit.state,
         [tof] * u.s,
     )
@@ -130,7 +130,7 @@ def test_umbra_event_not_triggering_is_ok():
     umbra_event = UmbraEvent(orbit)
 
     method = CowellPropagator(events=[umbra_event])
-    rr, _ = method.propagate_many(
+    _, _ = method.propagate_many(
         orbit.state,
         [tof] * u.s,
     )
@@ -157,7 +157,7 @@ def test_umbra_event_crossing():
     umbra_event = UmbraEvent(orbit, terminal=True)
 
     method = CowellPropagator(events=[umbra_event])
-    rr, _ = method.propagate_many(
+    _, _ = method.propagate_many(
         orbit.state,
         [tof] * u.s,
     )
@@ -183,7 +183,7 @@ def test_penumbra_event_crossing():
 
     penumbra_event = PenumbraEvent(orbit, terminal=True)
     method = CowellPropagator(events=[penumbra_event])
-    rr, _ = method.propagate_many(
+    _, _ = method.propagate_many(
         orbit.state,
         [tof] * u.s,
     )
@@ -200,7 +200,7 @@ def test_node_cross_event():
     node_event = NodeCrossEvent(terminal=True)
     tofs = [0.01, 0.1, 0.5, 0.8, 1, 3, 5, 6, 10, 15] << u.s
     method = CowellPropagator(events=[node_event])
-    rr, vv = method.propagate_many(
+    _, _ = method.propagate_many(
         orbit.state,
         tofs,
     )
@@ -218,7 +218,7 @@ def test_node_event_equatorial_orbit():
 
     tofs = [5, 10, 50] << u.s
     method = CowellPropagator(events=events)
-    rr, vv = method.propagate_many(
+    _, _ = method.propagate_many(
         orb.state,
         tofs,
     )
@@ -341,7 +341,7 @@ def test_LOS_event_raises_warning_if_norm_of_r1_less_than_attractor_radius_durin
     tofs = [100, 500, 1000, 2000] << u.s
     # Propagate the secondary body to generate its position coordinates
     method = CowellPropagator()
-    rr, vv = method.propagate_many(
+    rr, _ = method.propagate_many(
         orbit.state,
         tofs,
     )
@@ -357,7 +357,7 @@ def test_LOS_event_raises_warning_if_norm_of_r1_less_than_attractor_radius_durin
 
     with pytest.warns(UserWarning, match="The norm of the position vector"):
         method = CowellPropagator(events=events)
-        r, v = method.propagate_many(
+        _, _ = method.propagate_many(
             orb.state,
             tofs,
         )
@@ -372,7 +372,7 @@ def test_LOS_event_with_lithobrake_event_raises_warning_when_satellite_cuts_attr
     tofs = [100, 500, 1000, 2000] << u.s
     # Propagate the secondary body to generate its position coordinates
     method = CowellPropagator()
-    rr, vv = method.propagate_many(
+    rr, _ = method.propagate_many(
         orbit.state,
         tofs,
     )
@@ -401,7 +401,7 @@ def test_LOS_event_with_lithobrake_event_raises_warning_when_satellite_cuts_attr
 
     lithobrake_event = LithobrakeEvent(Earth.R.to_value(u.km))
     method = CowellPropagator(events=[lithobrake_event, los_event])
-    r, v = method.propagate_many(
+    _, _ = method.propagate_many(
         orb.state,
         tofs,
     )
@@ -418,7 +418,7 @@ def test_LOS_event():
     tofs = [100, 500, 1000, 2000] << u.s
     # Propagate the secondary body to generate its position coordinates
     method = CowellPropagator()
-    rr, vv = method.propagate_many(
+    rr, _ = method.propagate_many(
         orbit.state,
         tofs,
     )
@@ -439,7 +439,7 @@ def test_LOS_event():
     tofs = [1, 5, 10, 100, 1000, 2000, 3000, 5000] << u.s
 
     method = CowellPropagator(events=events)
-    r, v = method.propagate_many(
+    _, _ = method.propagate_many(
         orb.state,
         tofs,
     )
