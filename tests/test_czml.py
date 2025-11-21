@@ -348,7 +348,7 @@ def test_czml_add_orbit_negative_rtol_raises_error_if_beyond_range():
     assert "The relative tolerance must be a value in the range (0, 1)" in excinfo.exconly()
 
 
-@pytest.fixture(name="expected_doc_and_trajectory")
+@pytest.fixture(name="expected_doc_add_trajectory")
 def fixture_expected_doc_add_trajectory():
     expected_doc = """[{
     "id": "document",
