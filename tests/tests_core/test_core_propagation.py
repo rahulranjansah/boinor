@@ -18,6 +18,7 @@ from boinor.core.propagation import (
     pimienta_coe,
     recseries,
     vallado,
+    #    cowell,
 )
 from boinor.core.propagation.farnocchia import (
     M_to_D_near_parabolic,
@@ -151,11 +152,10 @@ def test_kepler_algorithm():
     assert_quantity_allclose(expected_r, value[0])
     assert_quantity_allclose(expected_v, value[1], rtol=1e-06)
 
-    # XXX what does that mean?
     f, g, fdot, gdot = vallado(k, r0, v0, tof, numiter)
     print("vallado: ", f, g, fdot, gdot)
-    #    assert_quantity_allclose(expected_r, value[0])
-    #    assert_quantity_allclose(expected_v, value[1])
+    assert_quantity_allclose(expected_r, value[0], rtol=1e-06)
+    assert_quantity_allclose(expected_v, value[1], rtol=1e-06)
 
     value_danby = danby(k, r0, v0, tof)
     #    print("danby: ", value_danby)
@@ -182,9 +182,8 @@ def test_kepler_algorithm():
     assert_quantity_allclose(expected_r, value_farnocchia[0])
     assert_quantity_allclose(expected_v, value_farnocchia[1], rtol=1e-06)
 
-
-# todo: does not work
-#    value_cowell_r, value_cowell_v=cowell(k, r0, v0, tof)
-#    print("cowell: ", value_cowell_r, value_cowell_v)
-#    assert_quantity_allclose(expected_r, value_cowell_r)
-#    assert_quantity_allclose(expected_v, value_cowell_v)
+    # todo: does not work
+    # value_cowell_r, value_cowell_v=cowell(k, r0, v0, tof)
+    # print("cowell: ", value_cowell_r, value_cowell_v)
+    # assert_quantity_allclose(expected_r, value_cowell_r)
+    # assert_quantity_allclose(expected_v, value_cowell_v)
