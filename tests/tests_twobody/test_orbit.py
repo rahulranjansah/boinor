@@ -6,7 +6,7 @@ from functools import partial
 import pickle
 from unittest import mock
 
-from astropy import constants as c, units as u
+from astropy import units as u
 from astropy.coordinates import (
     ITRS,
     CartesianDifferential,
@@ -1444,11 +1444,10 @@ def test_apply_impulse():
 # todo: this test works locally but does not work on circleci!?
 #       the coverage test fails due to incompatible units
 def test_orbit_from_equinoctial():
-    r = [-2032.4, 4591.2, -4544.8] << u.km
-    v = [100, 50, 100] << u.km / u.s
-    Time("2022-01-01")  # Not relevant.
+    k = Earth.k.to_value(u.km**3 / u.s**2)
+    r = np.array([-6045.0, -3490.0, 2500.0])
+    v = np.array([-3.457, -6.618, -2.533])
 
-    k = c.GM_earth.value
     p, ecc, inc, raan, argp, nu = rv2coe(k, r, v)
 
     # TODO: check whether this Orbit contains reasonable values
