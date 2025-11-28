@@ -1441,8 +1441,6 @@ def test_apply_impulse():
     orbit.apply_impulse(v)
 
 
-# todo: this test works locally but does not work on circleci!?
-#       the coverage test fails due to incompatible units
 def test_orbit_from_equinoctial():
     k = Earth.k.to_value(u.km**3 / u.s**2)
     r = np.array([-6045.0, -3490.0, 2500.0])
