@@ -152,8 +152,9 @@ def test_kepler_algorithm():
     assert_quantity_allclose(expected_r, value[0])
     assert_quantity_allclose(expected_v, value[1], rtol=1e-06)
 
+    # todo: add conversion from f,g to expected_r, expected_v
     f, g, fdot, gdot = vallado(k, r0, v0, tof, numiter)
-    # print("vallado: ", f, g, fdot, gdot)
+    print("vallado: ", f, g, fdot, gdot)
     assert_quantity_allclose(expected_r, value[0])
     assert_quantity_allclose(expected_v, value[1], rtol=1e-06)
 

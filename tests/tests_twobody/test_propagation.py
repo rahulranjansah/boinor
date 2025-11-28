@@ -90,9 +90,20 @@ def test_hyperbolic_near_parabolic(ecc, propagator):
     assert_quantity_allclose(orb_propagator.v, orb_cowell.v)
 
 
-@pytest.mark.parametrize("method", [MarkleyPropagator()])
+@pytest.mark.parametrize(
+    "method",
+    [
+        DanbyPropagator(),
+        MarkleyPropagator(),
+        GoodingPropagator(),
+        CowellPropagator(),
+        FarnocchiaPropagator(),
+        RecseriesPropagator(),
+        ValladoPropagator(),
+    ],
+)
 def test_near_equatorial(method):
-    # TODO: Extend to other propagators?
+    # Extend to all other propagators
     r = [8.0e3, 1.0e3, 0.0] * u.km
     v = [-0.5, -0.5, 0.0001] * u.km / u.s
     tof = 1.0 * u.h
@@ -337,19 +348,29 @@ def test_propagate_to_date_has_proper_epoch():
 
 
 @pytest.mark.filterwarnings("ignore::erfa.core.ErfaWarning")
-@pytest.mark.parametrize("method", [DanbyPropagator(), MarkleyPropagator(), GoodingPropagator()])
+@pytest.mark.parametrize(
+    "method",
+    [
+        DanbyPropagator(),
+        MarkleyPropagator(),
+        GoodingPropagator(),
+        FarnocchiaPropagator(),
+        RecseriesPropagator(),
+        ValladoPropagator(),
+    ],
+)
 def test_propagate_long_times_keeps_geometry(method):
-    # TODO: Extend to other propagators?
+    # Extended to other propagators as well, CowellPropagator() is not working or lasts too long
     # See https://github.com/poliastro/poliastro/issues/265
     time_of_flight = 100 * u.year
 
     res = iss.propagate(time_of_flight, method=method)
 
     assert_quantity_allclose(iss.a, res.a)
-    assert_quantity_allclose(iss.ecc, res.ecc)
+    assert_quantity_allclose(iss.ecc, res.ecc, rtol=1e-06)
     assert_quantity_allclose(iss.inc, res.inc)
     assert_quantity_allclose(iss.raan, res.raan)
-    assert_quantity_allclose(iss.argp, res.argp)
+    assert_quantity_allclose(iss.argp, res.argp, rtol=1e-06)
 
     assert_quantity_allclose((res.epoch - iss.epoch).to(time_of_flight.unit), time_of_flight)
 
