@@ -250,8 +250,8 @@ def F_to_nu(F, ecc):
 
 
 @jit
-def M_to_E(M, ecc):
-    """Eccentric anomaly from mean anomaly.
+def M_to_E_scalar(M, ecc):
+    """Eccentric anomaly from mean anomaly (parameter is scalar).
 
     .. versionadded:: 0.4.0
 
@@ -278,6 +278,92 @@ def M_to_E(M, ecc):
         E0 = M + ecc
     E = _newton_elliptic(E0, args=(M, ecc))
     return E
+
+
+@jit
+def M_to_E_vector(M, ecc):
+    """Eccentric anomaly from mean anomaly (parameter is vector).
+
+    .. versionadded:: 0.4.0
+
+    Parameters
+    ----------
+    M : np.array(float)
+        Mean anomaly in radians.
+    ecc : np.array(float)
+        Eccentricity.
+
+    Returns
+    -------
+    E : np.array(float)
+        Eccentric anomaly.
+
+    Notes
+    -----
+    This uses a Newton iteration on the Kepler equation.
+
+    """
+    E = np.zeros(M.shape)
+    for index in range(0, len(M)):
+        if -np.pi < M[index] < 0 or np.pi < M[index]:
+            E0 = M[index] - ecc[index]
+        else:
+            E0 = M[index] + ecc[index]
+        E[index] = _newton_elliptic(E0, args=(M[index], ecc[index]))
+
+    return E
+
+
+@jit
+def M_to_E_scavec(M, ecc):
+    """Eccentric anomaly from mean anomaly (parameter is scalar or vector).
+
+    .. versionadded:: 0.4.0
+
+    Parameters
+    ----------
+    M : float or np.array(float)
+        Mean anomaly in radians.
+    ecc : float or np.array(float)
+        Eccentricity.
+
+    Returns
+    -------
+    E : float or np.array(float)
+        Eccentric anomaly.
+
+    Notes
+    -----
+    This uses a Newton iteration on the Kepler equation.
+
+    """
+    raise NotImplementedError("This function is not yet implemented.")
+
+
+@jit
+def M_to_E(M, ecc):
+    """Eccentric anomaly from mean anomaly.
+
+    .. versionadded:: 0.4.0
+
+    Parameters
+    ----------
+    M : float
+        Mean anomaly in radians.
+    ecc : float
+        Eccentricity.
+
+    Returns
+    -------
+    E : float
+        Eccentric anomaly.
+
+    Notes
+    -----
+    This uses a Newton iteration on the Kepler equation.
+
+    """
+    return M_to_E_scalar(M, ecc)
 
 
 @jit

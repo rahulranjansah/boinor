@@ -10,6 +10,8 @@ from boinor.core.angles import (
     F_to_nu as F_to_nu_fast,
     M_to_D as M_to_D_fast,
     M_to_E as M_to_E_fast,
+    M_to_E_scavec as M_to_E_scavec_fast,
+    M_to_E_vector as M_to_E_vector_fast,
     M_to_F as M_to_F_fast,
     fp_angle as fp_angle_fast,
     nu_to_D as nu_to_D_fast,
@@ -168,6 +170,72 @@ def M_to_E(M, ecc):
 
     """
     return (M_to_E_fast(M.to_value(u.rad), ecc.value) * u.rad).to(M.unit)
+
+
+@u.quantity_input(M=u.rad, ecc=u.one)
+def M_to_E_scalar(M, ecc):
+    """Eccentric anomaly from mean anomaly.
+
+    .. versionadded:: 0.4.0
+
+    Parameters
+    ----------
+    M : ~astropy.units.Quantity
+        Mean anomaly.
+    ecc : ~astropy.units.Quantity
+        Eccentricity.
+
+    Returns
+    -------
+    E : ~astropy.units.Quantity
+        Eccentric anomaly.
+
+    """
+    return (M_to_E_fast(M.to_value(u.rad), ecc.value) * u.rad).to(M.unit)
+
+
+@u.quantity_input(M=u.rad, ecc=u.one)
+def M_to_E_vector(M, ecc):
+    """Eccentric anomaly from mean anomaly.
+
+    .. versionadded:: 0.4.0
+
+    Parameters
+    ----------
+    M : ~astropy.units.Quantity
+        Mean anomaly.
+    ecc : ~astropy.units.Quantity
+        Eccentricity.
+
+    Returns
+    -------
+    E : ~astropy.units.Quantity
+        Eccentric anomaly.
+
+    """
+    return (M_to_E_vector_fast(M.to_value(u.rad), ecc) * u.rad).to(M.unit)
+
+
+@u.quantity_input(M=u.rad, ecc=u.one)
+def M_to_E_scavec(M, ecc):
+    """Eccentric anomaly from mean anomaly.
+
+    .. versionadded:: 0.4.0
+
+    Parameters
+    ----------
+    M : ~astropy.units.Quantity
+        Mean anomaly.
+    ecc : ~astropy.units.Quantity
+        Eccentricity.
+
+    Returns
+    -------
+    E : ~astropy.units.Quantity
+        Eccentric anomaly.
+
+    """
+    return (M_to_E_scavec_fast(M.to_value(u.rad), ecc.value) * u.rad).to(M.unit)
 
 
 @u.quantity_input(M=u.rad, ecc=u.one)

@@ -16,6 +16,8 @@ from boinor.twobody.angles import (
     F_to_nu,
     M_to_D,
     M_to_E,
+    M_to_E_scalar,
+    M_to_E_vector,
     M_to_F,
     fp_angle,
     nu_to_D,
@@ -269,3 +271,55 @@ def test_convert_values():
 
     new_M = D_to_M(D)
     assert_allclose(new_M, M, atol=1e-8)
+
+
+def test_M_to_E():
+    ecc = 0.35 * u.one
+    M_no_unit = 65.0
+    M = M_no_unit * u.deg
+    expected_E = 84.976494 * u.deg
+
+    ecc_array = np.array([ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc])
+    M_array = (
+        np.array(
+            [
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+            ]
+        )
+        * u.deg
+    )
+    expected_E_array = np.full_like(M_array, expected_E)
+
+    E = M_to_E(M, ecc)
+    assert_allclose(expected_E, E, atol=1e-8)
+
+    E = M_to_E_scalar(M, ecc)
+    assert_allclose(expected_E, E, atol=1e-8)
+
+    E_array = M_to_E_vector(M_array, ecc_array)
+    assert_allclose(E_array, expected_E_array, atol=1e-8)
+
+
+def test_M_to_E_benchmark(benchmark):
+    ecc = 0.35 * u.one
+    M = 65.0 * u.deg
+
+    benchmark.pedantic(M_to_E, args=(M, ecc))
+
+
+def test_M_to_E_scalar_benchmark(benchmark):
+    ecc = 0.35 * u.one
+    M = 65.0 * u.deg
+
+    benchmark.pedantic(M_to_E_scalar, args=(M, ecc))
