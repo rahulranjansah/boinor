@@ -236,11 +236,6 @@
   },
   {
     "state": "OPEN",
-    "title": "M_to_E is not vectorized",
-    "url": "https://github.com/poliastro/poliastro/issues/1340"
-  },
-  {
-    "state": "OPEN",
     "title": "Show plot legend even if there is only one orbit ",
     "url": "https://github.com/poliastro/poliastro/issues/1327"
   },
