@@ -329,6 +329,29 @@ def test_M_to_E():
     assert_allclose(E_array, expected_E_array, atol=1e-8)
 
 
+# add test for vectorization of other functions in twobody/angles
+def test_angle_vector_D_to_nu():
+    D_array = np.array([0.5, 0.5, 0.5]) * u.rad
+    expected_nu_array = np.array([0.9272952180016122, 0.9272952180016122, 0.9272952180016122]) * u.rad
+    nu_array = D_to_nu(D_array)
+    assert_allclose(nu_array, expected_nu_array, atol=1e-8)
+
+    new_D_array = nu_to_D(nu_array)
+    assert_allclose(new_D_array, D_array, atol=1e-8)
+
+
+def test_angle_vector_nu_to_E():
+    ecc_array = np.array([0.35, 0.35, 0.35]) * u.one
+    nu_array = np.array([153.32411, 153.32411, 153.32411]) * u.deg
+    expected_E_array = np.array([142.2712, 142.2712, 142.2712]) * u.deg
+
+    E_array = nu_to_E(nu_array, ecc_array)
+    assert_quantity_allclose(E_array, expected_E_array, rtol=1e-6)
+
+    new_nu_array = E_to_nu(E_array, ecc_array)
+    assert_quantity_allclose(new_nu_array, nu_array, rtol=1e-6)
+
+
 def test_M_to_E_benchmark(benchmark):
     ecc = 0.35 * u.one
     M = 65.0 * u.deg
