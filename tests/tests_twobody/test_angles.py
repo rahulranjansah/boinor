@@ -20,6 +20,9 @@ from boinor.twobody.angles import (
     M_to_E_scavec,
     M_to_E_vector,
     M_to_F,
+    M_to_F_scalar,
+    M_to_F_scavec,
+    M_to_F_vector,
     fp_angle,
     nu_to_D,
     nu_to_E,
@@ -329,6 +332,61 @@ def test_M_to_E():
     assert_allclose(E_array, expected_E_array, atol=1e-8)
 
 
+def test_M_to_F():
+    ecc = 0.35 * u.one
+    M_no_unit = 65.0
+    M = M_no_unit * u.deg
+    expected_F = 184.178938 * u.deg
+
+    ecc_array = np.array([ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc, ecc])
+    M_array = (
+        np.array(
+            [
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+                M_no_unit,
+            ]
+        )
+        * u.deg
+    )
+    expected_F_array = np.full_like(M_array, expected_F)
+
+    F = M_to_F(M, ecc)
+    assert_allclose(F, expected_F, atol=1e-8)
+
+    F = M_to_F_scalar(M, ecc)
+    assert_allclose(F, expected_F, atol=1e-8)
+
+    F_array = M_to_F_vector(M_array, ecc_array)
+    assert_allclose(F_array, expected_F_array, atol=1e-8)
+
+    # test scavev with
+    #   (scalar, scalar) result is scalar
+    #   (scalar, vector) result is vector
+    #   (vector, scalar) result is vector
+    #   (vector, vector) result is vector
+    F = M_to_F_scavec(M, ecc)
+    assert_allclose(F, expected_F, atol=1e-8)
+
+    F_array = M_to_F_scavec(M_array, ecc_array)
+    assert_allclose(F_array, expected_F_array, atol=1e-8)
+
+    F_array = M_to_F_scavec(M, ecc_array)
+    assert_allclose(F_array, expected_F_array, atol=1e-8)
+
+    F_array = M_to_F_scavec(M_array, ecc)
+    assert_allclose(F_array, expected_F_array, atol=1e-8)
+
+
 # add test for vectorization of other functions in twobody/angles
 def test_angle_vector_D_to_nu():
     D_array = np.array([0.5, 0.5, 0.5]) * u.rad
@@ -340,7 +398,7 @@ def test_angle_vector_D_to_nu():
     assert_allclose(new_D_array, D_array, atol=1e-8)
 
 
-def test_angle_vector_nu_to_E():
+def test_angle_vector_E_to_nu():
     ecc_array = np.array([0.35, 0.35, 0.35]) * u.one
     nu_array = np.array([153.32411, 153.32411, 153.32411]) * u.deg
     expected_E_array = np.array([142.2712, 142.2712, 142.2712]) * u.deg
@@ -350,6 +408,21 @@ def test_angle_vector_nu_to_E():
 
     new_nu_array = E_to_nu(E_array, ecc_array)
     assert_quantity_allclose(new_nu_array, nu_array, rtol=1e-6)
+
+
+def test_angle_vector_F_to_nu():
+    # Data from Curtis, H. (2013). "Orbital mechanics for engineering students".
+    # Example 3.5
+    M_array = np.array([11.279, 11.279, 11.279]) * u.rad
+    ecc_array = np.array([1.1, 1.1, 1.1]) * u.one
+    expected_nu_array = np.array([153.51501, 153.51501, 153.51501]) * u.deg
+    F_array = M_to_F_scavec(M_array, ecc_array)
+
+    nu_array = F_to_nu(F_array, ecc_array)
+    assert_quantity_allclose(nu_array, expected_nu_array, rtol=1e-4)
+
+    new_F_array = nu_to_F(nu_array, ecc_array)
+    assert_quantity_allclose(new_F_array, F_array, rtol=1e-6)
 
 
 def test_M_to_E_benchmark(benchmark):

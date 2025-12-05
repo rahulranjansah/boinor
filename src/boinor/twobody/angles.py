@@ -14,6 +14,8 @@ from boinor.core.angles import (
     M_to_E_scalar as M_to_E_scalar_fast,
     M_to_E_vector as M_to_E_vector_fast,
     M_to_F as M_to_F_fast,
+    M_to_F_scalar as M_to_F_scalar_fast,
+    M_to_F_vector as M_to_F_vector_fast,
     fp_angle as fp_angle_fast,
     nu_to_D as nu_to_D_fast,
     nu_to_E as nu_to_E_fast,
@@ -272,6 +274,80 @@ def M_to_F(M, ecc):
 
     """
     return (M_to_F_fast(M.to_value(u.rad), ecc.value) * u.rad).to(M.unit)
+
+
+@u.quantity_input(M=u.rad, ecc=u.one)
+def M_to_F_scalar(M, ecc):
+    """Hyperbolic eccentric anomaly from mean anomaly.
+
+    Parameters
+    ----------
+    M : ~astropy.units.Quantity
+        Mean anomaly.
+    ecc : ~astropy.units.Quantity
+        Eccentricity (>1).
+
+    Returns
+    -------
+    F : ~astropy.units.Quantity
+        Hyperbolic eccentric anomaly.
+
+    """
+    return (M_to_F_scalar_fast(M.to_value(u.rad), ecc.value) * u.rad).to(M.unit)
+
+
+@u.quantity_input(M=u.rad, ecc=u.one)
+def M_to_F_vector(M, ecc):
+    """Hyperbolic eccentric anomaly from mean anomaly.
+
+    Parameters
+    ----------
+    M : ~astropy.units.Quantity
+        Mean anomaly.
+    ecc : ~astropy.units.Quantity
+        Eccentricity (>1).
+
+    Returns
+    -------
+    F : ~astropy.units.Quantity
+        Hyperbolic eccentric anomaly.
+
+    """
+    return (M_to_F_vector_fast(M.to_value(u.rad), ecc) * u.rad).to(M.unit)
+
+
+@u.quantity_input(M=u.rad, ecc=u.one)
+def M_to_F_scavec(M, ecc):
+    """Hyperbolic eccentric anomaly from mean anomaly.
+
+    Parameters
+    ----------
+    M : ~astropy.units.Quantity
+        Mean anomaly.
+    ecc : ~astropy.units.Quantity
+        Eccentricity (>1).
+
+    Returns
+    -------
+    F : ~astropy.units.Quantity
+        Hyperbolic eccentric anomaly.
+
+    """
+
+    m_is_scalar = np.ndim(M) == 0
+    ecc_is_scalar = np.ndim(ecc) == 0
+    if m_is_scalar and ecc_is_scalar:
+        return (M_to_F_scalar_fast(M.to_value(u.rad), ecc.value) * u.rad).to(M.unit)
+
+    if m_is_scalar:
+        M_array = np.full_like(ecc, M.value) * M.unit
+        return (M_to_F_vector_fast(M_array.to_value(u.rad), ecc) * u.rad).to(M.unit)
+
+    if ecc_is_scalar:
+        ecc_array = np.full_like(M.to_value(), ecc)
+        return (M_to_F_vector_fast(M.to_value(u.rad), ecc_array) * u.rad).to(M.unit)
+
+    return (M_to_F_vector_fast(M.to_value(u.rad), ecc) * u.rad).to(M.unit)
 
 
 @u.quantity_input(M=u.rad, ecc=u.one)

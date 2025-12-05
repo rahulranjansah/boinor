@@ -303,6 +303,7 @@ def M_to_E_vector(M, ecc):
     This uses a Newton iteration on the Kepler equation.
 
     """
+    # XXX check whether M and ecc have the same length
     E = np.zeros(M.shape)
     for index in range(0, len(M)):
         if -np.pi < M[index] < 0 or np.pi < M[index]:
@@ -341,8 +342,38 @@ def M_to_E(M, ecc):
 
 
 @jit
-def M_to_F(M, ecc):
-    """Hyperbolic anomaly from mean anomaly.
+def M_to_F_vector(M, ecc):
+    """Hyperbolic anomaly from mean anomaly (parameter is vector).
+
+    Parameters
+    ----------
+    M : float
+        Mean anomaly in radians.
+    ecc : float
+        Eccentricity (>1).
+
+    Returns
+    -------
+    F : float
+        Hyperbolic anomaly.
+
+    Notes
+    -----
+    This uses a Newton iteration on the hyperbolic Kepler equation.
+
+    """
+    # XXX check whether M and ecc have the same length
+    F = np.zeros(M.shape)
+    for index in range(0, len(M)):
+        F0 = np.arcsinh(M[index] / ecc[index])
+        F[index] = _newton_hyperbolic(F0, args=(M[index], ecc[index]), maxiter=100)
+
+    return F
+
+
+@jit
+def M_to_F_scalar(M, ecc):
+    """Hyperbolic anomaly from mean anomaly (parameter is scalar).
 
     Parameters
     ----------
@@ -364,6 +395,30 @@ def M_to_F(M, ecc):
     F0 = np.arcsinh(M / ecc)
     F = _newton_hyperbolic(F0, args=(M, ecc), maxiter=100)
     return F
+
+
+@jit
+def M_to_F(M, ecc):
+    """Hyperbolic anomaly from mean anomaly.
+
+    Parameters
+    ----------
+    M : float
+        Mean anomaly in radians.
+    ecc : float
+        Eccentricity (>1).
+
+    Returns
+    -------
+    F : float
+        Hyperbolic anomaly.
+
+    Notes
+    -----
+    This uses a Newton iteration on the hyperbolic Kepler equation.
+
+    """
+    return M_to_F_scalar(M, ecc)
 
 
 @jit
