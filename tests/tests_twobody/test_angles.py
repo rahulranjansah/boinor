@@ -425,6 +425,55 @@ def test_angle_vector_F_to_nu():
     assert_quantity_allclose(new_F_array, F_array, rtol=1e-6)
 
 
+def test_angle_vector_M_to_D():
+    M_array = np.array([0.5, 0.5, 0.5]) * u.rad
+    expected_D_array = np.array([0.46622052391077345, 0.46622052391077345, 0.46622052391077345]) * u.rad
+    D_array = M_to_D(M_array)
+    assert_allclose(D_array, expected_D_array, atol=1e-8)
+
+    new_M_array = D_to_M(D_array)
+    assert_allclose(new_M_array, M_array, atol=1e-8)
+
+
+def test_angle_vector_E_to_M():
+    ecc_array = np.array([0.35, 0.35, 0.35]) * u.one
+    nu_array = np.array([153.32411, 153.32411, 153.32411]) * u.deg
+    expected_M_array = np.array([130.000002, 130.000002, 130.000002]) * u.deg
+
+    E_array = nu_to_E(nu_array, ecc_array)
+
+    M_array = E_to_M(E_array, ecc_array)
+    assert_quantity_allclose(M_array, expected_M_array, rtol=1e-7)
+
+    new_E_array = M_to_E_vector(M_array, ecc_array)
+    assert_quantity_allclose(new_E_array, E_array, rtol=1e-7)
+
+
+def test_angle_vector_F_to_M():
+    nu_array = np.array([100.0, 100.0, 100.0]) * u.deg
+    ecc_array = np.array([2.7696, 2.7696, 2.7696]) * u.one
+    expected_M_array = np.array([11.279, 11.279, 11.279]) * u.rad
+
+    F_array = nu_to_F(nu_array, ecc_array)
+
+    M_array = F_to_M(F_array, ecc_array)
+    assert_quantity_allclose(M_array, expected_M_array, rtol=1e-4)
+
+    new_F_array = M_to_F_vector(M_array, ecc_array)
+    assert_quantity_allclose(new_F_array, F_array, rtol=1e-7)
+
+
+def test_angle_vector_fp_angle():
+    # Data from Curtis, example 2.5
+    nu_array = np.array([109.5, 109.5, 109.5]) * u.deg
+    ecc_array = np.array([0.6, 0.6, 0.6]) * u.one
+    expected_gamma_array = np.array([35.26, 35.26, 35.26]) * u.deg
+
+    gamma_array = fp_angle(np.deg2rad(nu_array), ecc_array)
+
+    assert_quantity_allclose(gamma_array, expected_gamma_array, rtol=1e-3)
+
+
 def test_M_to_E_benchmark(benchmark):
     ecc = 0.35 * u.one
     M = 65.0 * u.deg
