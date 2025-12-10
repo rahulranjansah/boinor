@@ -508,7 +508,19 @@ def test_propagation_many():
 # use all propagators later
 # @pytest.mark.parametrize("propagator", ALL_PROPAGATORS)
 # def test_propagation_many_sa(propagator):
-def test_propagation_many_sa():
+@pytest.mark.parametrize(
+    "method",
+    [
+        DanbyPropagator(),
+        MarkleyPropagator(),
+        GoodingPropagator(),
+        #        CowellPropagator(),
+        #        FarnocchiaPropagator(),
+        #        RecseriesPropagator(),
+        #        ValladoPropagator(),
+    ],
+)
+def test_propagation_many_sa(method):
     # Data from Vallado, example 2.4
     r0 = np.array([1131.340, -2282.343, 6672.423]) * u.km
     v0 = np.array([-5.64305, 4.30333, 2.42879]) * u.km / u.s
@@ -521,7 +533,7 @@ def test_propagation_many_sa():
     expected_state_vector_equal = np.full(equal_array_size, 1.255406) * u.rad
     expected_state_vector = np.array([7.194559e-05, 0.6295440547890778, 1.2554060743766335, 1.8754977138925124]) * u.rad
 
-    method = DanbyPropagator()
+    # method = DanbyPropagator()
     state_vector = method.propagate_many_sa(orbit.state, tofs_equal)
     for i in range(state_vector.size):
         assert_quantity_allclose(state_vector[i].nu, expected_state_vector_equal[i], rtol=1e-7)
