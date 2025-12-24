@@ -25,5 +25,6 @@ the plotting utilities, insight on the {ref}`API <api-reference>` capabilities a
    /examples/tisserand.myst.md
    /examples/detecting-events.myst.md
    /examples/loading-OMM-and-TLE-satellite-data.myst.md
-   
+   /examples/render-dsk-kernels.myst.md
+
 ```

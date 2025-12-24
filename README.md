@@ -7,23 +7,23 @@
 [![boinor_badge]](https://github.com/boinor/boinor)
 [![CircleCI_badge]]()
 [![license_badge]](https://opensource.org/licenses/MIT)
-[![python_badge]](https://pypi.org/project/boinor) 
+[![python_badge]](https://pypi.org/project/boinor)
 [![pre_commit_badge]](https://results.pre-commit.ci/badge/github/boinor/boinor/main.svg)
 [![code_badge]]()
-[![pypi_badge]](https://pypi.org/project/boinor) 
-[![mailing_badge]](https://groups.io/g/boinor-dev) 
+[![pypi_badge]](https://pypi.org/project/boinor)
+[![mailing_badge]](https://groups.io/g/boinor-dev)
 [![docs_badge]](https://readthedocs.org/projects/boinor/badge/?version=latest)
-[![coverage_badge]](https://codecov.io/github/boinor/boinor?branch=main) 
+[![coverage_badge]](https://codecov.io/github/boinor/boinor?branch=main)
 [![doi_badge]](https://doi.org/10.5281/zenodo.12809724)
 [![FAIR checklist badge]](https://fairsoftwarechecklist.net/v0.2?f=31&a=32112&i=32311&r=132)
-[![astropy_badge]](https://www.astropy.org) 
+[![astropy_badge]](https://www.astropy.org)
 
 
 <!--
-[![backers_badge]](https://opencollective.com/boinor/) 
-[![sponsors_badge]](https://opencollective.com/boinor/) 
-[![chat_badge]](http://chat.boinor.space/) 
-[![binder_badge]](https://mybinder.org/v2/gh/boinor/boinor/main?labpath=index.ipynb) 
+[![backers_badge]](https://opencollective.com/boinor/)
+[![sponsors_badge]](https://opencollective.com/boinor/)
+[![chat_badge]](http://chat.boinor.space/)
+[![binder_badge]](https://mybinder.org/v2/gh/boinor/boinor/main?labpath=index.ipynb)
 -->
 
 
@@ -55,6 +55,8 @@ boinor requires the following Python packages:
 - [matplotlib](https://matplotlib.org/) for orbit plotting
 - [plotly](https://plotly.com/) for 2D and 3D interactive orbit plotting
 - [scipy](https://scipy.org/) for root finding and numerical propagation
+- [pandas](https://pandas.pydata.org/) for loading and processing data
+- [vispy](https://vispy.org/) for 3D visualization of DSK kernels
 
 boinor is supported on Linux, macOS and Windows on Python 3.10 to 3.13.
 
@@ -109,20 +111,20 @@ boinor is released under the MIT license, hence allowing commercial use of
 the library. Please refer to the [COPYING] file.
 
     The MIT License (MIT)
-    
+
     Copyright (c) 2012-2023 Juan Luis Cano Rodríguez, Jorge Martínez Garrido, and the poliastro development team
     Copyright (c) 2024-2025 Thorsten Alteholz, and the boinor development team
-    
+
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-    
+
     The above copyright notice and this permission notice shall be included in all
     copies or substantial portions of the Software.
-    
+
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -164,7 +166,7 @@ boinor. **Thanks to all our sponsors!**
 
 <!--
 If you would like to support boinor, consider [becoming a backer] or
-[becoming a sponsor]. 
+[becoming a sponsor].
 
 **Thanks to all our backers!**
 
@@ -195,12 +197,12 @@ If you would like to support boinor, consider [becoming a backer] or
 * **What's the future of the project?**
 
   boinor is actively maintained
-<!--  
+<!--
    and receiving an influx of new contributors
   thanks to the generous sponsorship of Google, the European Space Agency, and
   NumFOCUS. The best way to get an idea of the roadmap is to see the
   [milestones] of the project.
--->  
+-->
 
 <!-- LINKS AND REFERENCES -->
 
@@ -212,7 +214,7 @@ If you would like to support boinor, consider [becoming a backer] or
 [Stable documentation]: https://docs.boinor.space/en/0.20.0/
 [Read the docs]: https://readthedocs.org
 [binder]: https://mybinder.org/
-[issue tracker]: https://github.com/boinor/boinor/issues 
+[issue tracker]: https://github.com/boinor/boinor/issues
 [CONTRIBUTING.md]: https://github.com/boinor/boinor/blob/main/CONTRIBUTING.md
 [COPYING]: https://github.com/boinor/boinor/blob/main/COPYING
 [mailing list]: https://groups.io/g/boinor-dev
@@ -244,7 +246,7 @@ If you would like to support boinor, consider [becoming a backer] or
 [doi_badge]: https://zenodo.org/badge/DOI/10.5281/zenodo.12809724.svg "doi badge"
 [FAIR checklist badge]: https://fairsoftwarechecklist.net/badge.svg
 [astropy_badge]: http://img.shields.io/badge/powered%20by-AstroPy-orange.svg "astropy badge"
-[mailing_badge]: https://img.shields.io/badge/mailing%20list-groups.io-8cbcd1.svg 
+[mailing_badge]: https://img.shields.io/badge/mailing%20list-groups.io-8cbcd1.svg
 [chat_badge]: https://img.shields.io/matrix/boinor:matrix.org.svg?logo=Matrix&logoColor=white "chat badge"
 [backers_badge]: https://img.shields.io/opencollective/backers/boinor?logo=open%20collective&logoColor=white  "backers badge"
 [sponsors_badge]: https://img.shields.io/opencollective/sponsors/boinor?logo=open%20collective&logoColor=white "sponsors badge"
