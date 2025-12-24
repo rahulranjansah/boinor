@@ -2,7 +2,7 @@
 # Bibliography
 
 > *Nanos gigantum humeris insidentes.*
-
+<!--
 ## Books and papers
 
 Several books and articles are mentioned across the documentation and
@@ -53,4 +53,4 @@ IDEs and browsers for my whole academic life.
   Engineering* 9, no. 3 (2007): 21-29.
   [DOI:10.1109/MCSE.2007.53](http://dx.doi.org/10.1109/MCSE.2007.53)
 - The Astropy Collaboration, A. M. Price-Whelan, B. M. Sipőcz, H. M. Günther, P. L. Lim, S. M.Crawford, S.
-Conseil, D. L. Shupe, M. W. Craig, N. Dencheva "The Astropy Project: Building an Open-science Project and Status of the v2.0 Core Package" The Astropy Collaboration et al AJ 156 123 (2018) [DOI:10.3847/1538-3881/aabc4f](https://iopscience.iop.org/article/10.3847/1538-3881/aabc4f)
+Conseil, D. L. Shupe, M. W. Craig, N. Dencheva "The Astropy Project: Building an Open-science Project and Status of the v2.0 Core Package" The Astropy Collaboration et al AJ 156 123 (2018) [DOI:10.3847/1538-3881/aabc4f](https://iopscience.iop.org/article/10.3847/1538-3881/aabc4f) -->
