@@ -40,7 +40,8 @@ def test_czml_custom_packet():
 
     sample_points = 10
 
-    pr_map_url = "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
+    # link does not seem to be important here: pr_map_url = "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
+    pr_map_url = "https://commons.wikimedia.org/wiki/File:Earthmap1000x500.jpg"
     scene = False
     expected_packet = """{
     "id": "custom_properties",
@@ -55,10 +56,11 @@ def test_czml_custom_packet():
                 ]
             }
         ],
-        "map_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg",
+        "map_url": "https://commons.wikimedia.org/wiki/File:Earthmap1000x500.jpg",
         "scene3D": false
     }
 }"""
+    # original was replaced by above: "map_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg",
 
     extractor = CZMLExtractor(
         start_epoch,
@@ -68,7 +70,6 @@ def test_czml_custom_packet():
         pr_map=pr_map_url,
         scene3D=scene,
     )
-
     pckt = extractor.packets[-1]
     # Test that custom packet parameters were set correctly
     assert repr(pckt) == expected_packet
@@ -109,7 +110,7 @@ def test_czml_add_orbit():
             }
         ],
         "map_url": [
-            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
+            "https://commons.wikimedia.org/wiki/File:Earthmap1000x500.jpg"
         ],
         "scene3D": true
     }
@@ -315,6 +316,7 @@ def test_czml_add_orbit():
         }
     }
 }]"""
+    # original replaced by example link above            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
     extractor = CZMLExtractor(start_epoch, end_epoch, sample_points)
 
     extractor.add_orbit(
@@ -373,7 +375,7 @@ def fixture_expected_doc_add_trajectory():
             }
         ],
         "map_url": [
-            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
+            "https://commons.wikimedia.org/wiki/File:Earthmap1000x500.jpg"
         ],
         "scene3D": true
     }
@@ -442,6 +444,7 @@ def fixture_expected_doc_add_trajectory():
         }
     }
 }]"""
+    # original link replaced by example above:            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
 
     return expected_doc
 
@@ -524,7 +527,7 @@ def test_czml_groundtrack():
             }
         ],
         "map_url": [
-            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
+            "https://commons.wikimedia.org/wiki/File:Earthmap1000x500.jpg"
         ],
         "scene3D": true
     }
@@ -706,6 +709,7 @@ def test_czml_groundtrack():
         }
     }
 }]"""
+    # original link replaced by example above:            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
     extractor = CZMLExtractor(start_epoch, end_epoch, sample_points)
 
     extractor.add_orbit(
@@ -750,7 +754,7 @@ def test_czml_ground_station():
             }
         ],
         "map_url": [
-            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
+            "https://commons.wikimedia.org/wiki/File:Earthmap1000x500.jpg"
         ],
         "scene3D": true
     }
@@ -804,6 +808,7 @@ def test_czml_ground_station():
         "outlineWidth": 1.0
     }
 }]"""
+    # original link replaced by example above:            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
     extractor = CZMLExtractor(start_epoch, end_epoch, sample_points)
 
     extractor.add_ground_station(
@@ -852,11 +857,12 @@ def test_czml_preamble():
             }
         ],
         "map_url": [
-            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
+            "https://commons.wikimedia.org/wiki/File:Earthmap1000x500.jpg"
         ],
         "scene3D": true
     }
 }]"""
+    # original link replaced by example above:            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg"
     extractor = CZMLExtractor(start_epoch, end_epoch, sample_points)
 
     assert repr(extractor.packets) == expected_doc

@@ -63,6 +63,7 @@ dependencies = [
     "plotly >=4.0,<7",
     "pyerfa",
     "scipy >=1.4.0",
+    "vispy >=0.16.0",
 ]
 dynamic = ["version", "description"]
 
@@ -84,6 +85,7 @@ doc = [
     "jupyter-client",
     "jupytext",
     "jupyter",
+    "jupyter_rfb",
     "myst-parser", #>=0.13.1,<1.0.0",
     "nbsphinx>=0.8.6",
     "nbconvert>=5.5",

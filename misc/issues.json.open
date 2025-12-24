@@ -41,11 +41,6 @@
   },
   {
     "state": "OPEN",
-    "title": "Test failures on Guix",
-    "url": "https://github.com/poliastro/poliastro/issues/1618"
-  },
-  {
-    "state": "OPEN",
     "title": "Submit to PyOpenSci",
     "url": "https://github.com/poliastro/poliastro/issues/1617"
   },

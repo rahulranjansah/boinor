@@ -221,7 +221,8 @@ class CZMLExtractor:
 
         """
         if pr_map is None:
-            pr_map = ("https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg",)
+            # this file is no longer available: pr_map = ("https://upload.wikimedia.org/wikipedia/commons/c/c4/Earthmap1000x500compac.jpg",)
+            pr_map = ("https://commons.wikimedia.org/wiki/File:Earthmap1000x500.jpg",)
             self.cust_prop[1] = pr_map
 
         custom_props = {
