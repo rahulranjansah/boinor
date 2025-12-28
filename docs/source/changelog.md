@@ -20,7 +20,7 @@ The code coverage increased from 96.47% to XX.XX%.
 - mee2rv code is broken {github}`poliastro issue #1564 <poliastro/poliastro#1564>`).
   This was already fixed in version 0.18.6, but for the sake of completeness should be mentioned
   here as well, so that nobody wonders why it disappeared from misc/issues.json.open.
-
+- all (except a few that I don't intend to fix) disabled pylint message are gone from .pylintrc now ({github}`boinor issue #4 <boinor/boinor#4>`).
 
 ### Pull requests
 
