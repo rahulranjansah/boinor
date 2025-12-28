@@ -419,16 +419,18 @@ confidence=HIGH,
 ##
 # there is nothing wrong with messages up until line-too-long
 # at the moment I prefer not to fix them
-# XXX no-member does not seem to work for astropy.units, so disabling it for now
-# XXX fixme <- remove for a moment
+# XXX no-member:                     does not seem to work for astropy.units, so disabling it for now
+# XXX duplicate-code (R0801):        is not something to take care of at the moment
+# XXX line-too-long:                 I don't like restrictions in line length
+# XXX unused-argmuent:               who cares about such things, the API is as it is
+# XXX invalid name:                  I do like all those names
+# XXX too-many-positional-arguments: there are as much parameters as needed
 disable=too-many-positional-arguments,
         invalid-name,
         unused-argument,
-        missing-function-docstring,
         R0801,
         no-member,
         line-too-long
-
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
