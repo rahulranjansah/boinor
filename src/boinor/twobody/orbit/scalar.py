@@ -708,7 +708,8 @@ class Orbit(OrbitCreationMixin):
         # session
         if backend is None:
             is_interactive = False  # set default value here
-            try:
+            # we can not really test this block, so exclude it from coverage report
+            try:  # pragma: no cover
                 shell = get_ipython().__class__.__name__
                 if shell == "ZMQInteractiveShell":
                     # Jupyter notebook or qtconsole

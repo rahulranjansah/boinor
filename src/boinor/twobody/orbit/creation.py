@@ -689,4 +689,6 @@ class OrbitCreationMixin:
         except AssertionError as exc:
             # a = attractor.R + alt, so it is not possible to be smaller that attractor.R
             # this assert can never be reached, prove me wrong :-)
-            raise ValueError(f"The semimajor axis may not be smaller than the {attractor.name}'s radius") from exc
+            raise ValueError(
+                f"The semimajor axis may not be smaller than the {attractor.name}'s radius"
+            ) from exc  # pragma: no cover

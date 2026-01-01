@@ -58,7 +58,7 @@ def gooding_coe(k, p, ecc, inc, raan, argp, nu, tof, numiter=150, rtol=1e-8):
     if ecc > 1.0:
         return gooding_coe_hyperbolic(k, p, ecc, inc, raan, argp, nu, tof, numiter, rtol)
 
-    raise NotImplementedError("Something is gone wrong.")
+    raise NotImplementedError("Something is gone wrong.")  # pragma: no cover
 
 
 @jit

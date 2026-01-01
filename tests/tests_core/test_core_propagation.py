@@ -59,8 +59,33 @@ def test_propagate_with_coe(propagator_coe):
     k = iss.attractor.k.to_value(u.km**3 / u.s**2)
 
     nu_final = propagator_coe(k, p, ecc, inc, raan, argp, nu, period)
-
     assert_quantity_allclose(nu_final, nu)
+
+
+# test gooding_coe with different ecc (basically to check for NotImplemented now)
+def test_gooding_coe():
+    period = iss.period
+    a, ecc, inc, raan, argp, nu = iss.classical()
+    p = a * (1 - ecc**2)
+
+    # Delete the units
+    p = p.to_value(u.km)
+    ecc = ecc.value
+    period = period.to_value(u.s)
+    inc = inc.to_value(u.rad)
+    raan = raan.to_value(u.rad)
+    argp = argp.to_value(u.rad)
+    nu = nu.to_value(u.rad)
+    k = iss.attractor.k.to_value(u.km**3 / u.s**2)
+
+    nu_final = gooding_coe(k, p, ecc, inc, raan, argp, nu, period)
+    assert_quantity_allclose(nu_final, nu)
+
+    with pytest.raises(NotImplementedError, match=""):
+        _ = gooding_coe(k, p, 1.0, inc, raan, argp, nu, period)
+
+    with pytest.raises(NotImplementedError, match=""):
+        _ = gooding_coe(k, p, 1.1, inc, raan, argp, nu, period)
 
 
 def test_farnocchia_stuff():
