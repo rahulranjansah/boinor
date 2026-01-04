@@ -34,12 +34,13 @@ def min_and_max_ground_range(h, eta_fov, eta_center, R):
     eta_max = eta_center + eta_fov / 2
     eta_min = eta_center - eta_fov / 2
 
+    # result of arcsin is defined between -pi/2 and pi/2, so no need to check this here
     gamma_max = np.arcsin(r_sat * np.sin(eta_max) / R)
-    if abs(gamma_max) <= np.pi / 2:
+    if abs(gamma_max) <= np.pi / 2:  # pragma: no cover
         gamma_max = np.pi - gamma_max
 
     gamma_min = np.arcsin(r_sat * np.sin(eta_min) / R)
-    if abs(gamma_min) <= np.pi / 2:
+    if abs(gamma_min) <= np.pi / 2:  # pragma: no cover
         gamma_min = np.pi - gamma_min
 
     # Maximum and minimum slant ranges
