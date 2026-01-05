@@ -303,7 +303,9 @@ def M_to_E_vector(M, ecc):
     This uses a Newton iteration on the Kepler equation.
 
     """
-    # XXX check whether M and ecc have the same length
+    if len(M) != len(ecc):
+        raise ValueError("M and ecc must be the same length")
+
     E = np.zeros(M.shape)
     for index in range(0, len(M)):
         if -np.pi < M[index] < 0 or np.pi < M[index]:
