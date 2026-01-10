@@ -40,9 +40,9 @@ def test_lib_pt_loc(SysChars, conv_tol, expected_lib_pt_loc):
     L_ND = u.def_unit("dist_nd", SysChars.lstar)
     V_ND = u.def_unit("vel_nd", SysChars.lstar)
     T_ND = u.def_unit("time_nd", SysChars.tstar)
-    assert L_ND.is_equivalent(SysChars.V_ND)
+    assert L_ND.is_equivalent(SysChars.L_ND)
     assert V_ND.is_equivalent(SysChars.V_ND)
-    assert T_ND.is_equivalent(SysChars.V_ND)
+    assert T_ND.is_equivalent(SysChars.T_ND)
 
     lib_pt = lib_pt.value
 
