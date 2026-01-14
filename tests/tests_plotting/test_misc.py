@@ -36,3 +36,8 @@ def test_plot_outer_solar_system_using_matplotlib2D_backend(earth_perihelion):
         outer=True,
     )
     return plt.gcf()
+
+
+def test_plot_solar_system_edge_cases(earth_perihelion):
+    with pytest.raises(ValueError, match="A total of 4 labels are required."):
+        plot_solar_system(epoch=earth_perihelion, outer=False, labels=["Mercury", "Venus"])
