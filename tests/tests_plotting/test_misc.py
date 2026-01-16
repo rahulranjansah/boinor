@@ -38,6 +38,13 @@ def test_plot_outer_solar_system_using_matplotlib2D_backend(earth_perihelion):
     return plt.gcf()
 
 
+# @pytest.mark.mpl_image_compare
 def test_plot_solar_system_edge_cases(earth_perihelion):
     with pytest.raises(ValueError, match="A total of 4 labels are required."):
         plot_solar_system(epoch=earth_perihelion, outer=False, labels=["Mercury", "Venus"])
+
+    plot_solar_system(
+        epoch=earth_perihelion, outer=False, labels=["MercuryLabel", "VenusLabel", "EarthLabel", "MarsLabel"]
+    )
+    # it should be fine to check whether plotting works, but patches are welcome :-)
+    # return plt.gcf()
