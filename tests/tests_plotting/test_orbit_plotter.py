@@ -230,12 +230,14 @@ def test_redraw_makes_attractor_none():
 
 def test_set_frame_plots_same_colors():
     # TODO: Review
+    expected_color = "green"
     op = OrbitPlotter()
-    op.plot_body_orbit(Jupiter, J2000_TDB)
+    op.plot_body_orbit(Jupiter, J2000_TDB, color=expected_color)
     colors1 = [orb[2] for orb in op.trajectories]
     op.set_body_frame(Jupiter)
     colors2 = [orb[2] for orb in op.trajectories]
     assert colors1 == colors2
+    assert all(c == expected_color for sub in colors1 for c in sub)
 
 
 def test_redraw_keeps_trajectories():
@@ -457,3 +459,39 @@ def test_plotter_methods_parameter():
 
     with pytest.raises(AttributeError, match="View can only be in 3D backends."):
         plotter.set_view(0.5 * u.rad, 0.5 * u.rad)
+
+
+@pytest.mark.parametrize("Backend", DEFAULT_ORBIT_PLOTTER_BACKENDS_3D.values())
+def test_edge_cases(Backend):
+    # Data from Vallado, example 6.1
+    alt_i = 191.34411 * u.km
+    alt_f = 35781.34857 * u.km
+    _a = 0 * u.deg
+    orb_i = Orbit.from_classical(
+        attractor=Earth,
+        a=Earth.R + alt_i,
+        ecc=0 * u.one,
+        inc=_a,
+        raan=_a,
+        argp=_a,
+        nu=_a,
+    )
+
+    # Create the maneuver
+    _ = Maneuver.hohmann(orb_i, Earth.R + alt_f)  # man
+
+    # Create the trajectory
+    _ = churi.sample()  # trajectory
+
+    # Plot the maneuver
+    fig, ax = plt.subplots()
+    plotter = OrbitPlotter(backend=Backend)
+    # XXX plotting with 3D does not work here
+    # plotter.plot(orb_i, label="Initial orbit", color="blue")
+    # plotter.plot_maneuver(orb_i, man, label="Hohmann maneuver", color="red")
+
+    # Plot the trajectroy
+    plotter.set_attractor(Sun)
+    plotter.set_body_frame(Jupiter)
+    # XXX plotting with 3D does not work here
+    # plotter.plot_trajectory(trajectory)

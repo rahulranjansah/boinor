@@ -153,9 +153,10 @@ class OrbitPlotter:
 
             p_vec, q_vec, w_vec = orbit.pqw()
 
-            if not np.allclose([norm(v) for v in (p_vec, q_vec, w_vec)], 1):
+            # by definition of pqw it is hard (maybe impossible) to trigger these exceptions here
+            if not np.allclose([norm(v) for v in (p_vec, q_vec, w_vec)], 1):  # pragma: no cover
                 raise ValueError("Vectors must be unit.")
-            if not np.allclose([p_vec @ q_vec, q_vec @ w_vec, w_vec @ p_vec], 0):
+            if not np.allclose([p_vec @ q_vec, q_vec @ w_vec, w_vec @ p_vec], 0):  # pragma: no cover
                 raise ValueError("Vectors must be mutually orthogonal.")
 
             self._frame = p_vec, q_vec, w_vec
