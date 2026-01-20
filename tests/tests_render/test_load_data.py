@@ -4,7 +4,7 @@ from io import StringIO
 import numpy as np
 from numpy.testing import assert_array_equal
 
-from boinor.render import load_data
+from boinor.render.data_loader import load_data
 
 
 def test_load_data_parses_vertices_and_faces():

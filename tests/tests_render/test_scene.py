@@ -2,10 +2,13 @@
 import numpy as np
 import pytest
 
-from boinor.render import MainWindow, load_data
+try:
+    from vispy import gloo  # noqa: F401
+except OSError:
+    pytest.skip("OpenGL not available", allow_module_level=True)
 
-# Skip entire module if vispy not available
-vispy = pytest.importorskip("vispy")
+from boinor.render.data_loader import load_data
+from boinor.render.scene import MainWindow
 
 
 @pytest.fixture
