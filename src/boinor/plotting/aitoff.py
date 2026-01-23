@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import spiceypy
 
+
 class AitoffPlotter:
     """All-sky map plotter using Aitoff projection in J2000 equatorial coordinates.
 

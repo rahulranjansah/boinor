@@ -1,12 +1,12 @@
 """tests related to module aitoff in sub-package plotting"""
+import glob
+
 from astropy import units as u
 from astropy.time import Time
 from matplotlib import pyplot as plt
 import numpy as np
 import pytest
 import spiceypy
-import glob
-
 
 from boinor.plotting.aitoff import AitoffPlotter
 
@@ -20,9 +20,9 @@ def test_aitoff_basic_plotting():
     plotter = AitoffPlotter(epoch=Time("2024-01-01T00:00:00"))
 
     # Plot points at different locations
-    plotter.plot_ra_dec(ra=0*u.deg, dec=0*u.deg, label="Equator", color="yellow", markersize=10)
-    plotter.plot_ra_dec(ra=6*u.hourangle, dec=30*u.deg, label="Test Point", color="cyan", markersize=10)
-    plotter.plot_ra_dec(ra=np.pi/2, dec=np.radians(45), label="Radians Test", color="red", markersize=8)
+    plotter.plot_ra_dec(ra=0 * u.deg, dec=0 * u.deg, label="Equator", color="yellow", markersize=10)
+    plotter.plot_ra_dec(ra=6 * u.hourangle, dec=30 * u.deg, label="Test Point", color="cyan", markersize=10)
+    plotter.plot_ra_dec(ra=np.pi / 2, dec=np.radians(45), label="Radians Test", color="red", markersize=8)
 
     plotter.set_title("Basic Aitoff Plot Test")
     plotter.set_labels()
@@ -40,7 +40,7 @@ def test_aitoff_ecliptic_option(show_ecliptic):
     plotter = AitoffPlotter(epoch=Time.now(), show_ecliptic=show_ecliptic)
 
     # Plot a single point
-    plotter.plot_ra_dec(ra=0*u.deg, dec=0*u.deg, label="Origin")
+    plotter.plot_ra_dec(ra=0 * u.deg, dec=0 * u.deg, label="Origin")
 
     # Check that ecliptic line exists or doesn't exist
     lines = plotter.ax.lines
@@ -57,7 +57,7 @@ def test_aitoff_ecliptic_option(show_ecliptic):
 def test_aitoff_different_styles(style):
     """Test that different matplotlib styles can be applied."""
     plotter = AitoffPlotter(epoch=Time.now(), style=style)
-    plotter.plot_ra_dec(ra=0*u.deg, dec=0*u.deg, label="Test")
+    plotter.plot_ra_dec(ra=0 * u.deg, dec=0 * u.deg, label="Test")
 
     # Just check it doesn't raise an exception
     assert plotter.fig is not None
@@ -66,14 +66,14 @@ def test_aitoff_different_styles(style):
 @pytest.mark.parametrize(
     "ra, dec",
     [
-        (0*u.deg, 0*u.deg),
-        (np.pi*u.rad, 0*u.deg),
-        (2*np.pi*u.rad, 0*u.deg),
-        (np.pi/2*u.rad, 45*u.deg),
-        (0*u.hourangle, 0*u.deg),
-        (12*u.hourangle, 0*u.deg),  # 12h = 180deg = π rad
-        (6*u.hourangle, 30*u.deg),
-        (18*u.hourangle, -45*u.deg),
+        (0 * u.deg, 0 * u.deg),
+        (np.pi * u.rad, 0 * u.deg),
+        (2 * np.pi * u.rad, 0 * u.deg),
+        (np.pi / 2 * u.rad, 45 * u.deg),
+        (0 * u.hourangle, 0 * u.deg),
+        (12 * u.hourangle, 0 * u.deg),  # 12h = 180deg = π rad
+        (6 * u.hourangle, 30 * u.deg),
+        (18 * u.hourangle, -45 * u.deg),
     ],
 )
 def test_aitoff_plot_ra_dec_coordinate_formats(ra, dec):
@@ -103,12 +103,7 @@ def test_aitoff_plot_ra_dec_styling(color, marker, markersize):
     plotter = AitoffPlotter(epoch=Time.now(), show_ecliptic=False)
 
     line = plotter.plot_ra_dec(
-        ra=0*u.deg,
-        dec=0*u.deg,
-        color=color,
-        marker=marker,
-        markersize=markersize,
-        label="Test"
+        ra=0 * u.deg, dec=0 * u.deg, color=color, marker=marker, markersize=markersize, label="Test"
     )
 
     assert line.get_marker() == marker
@@ -120,7 +115,7 @@ def test_aitoff_plot_ra_dec_styling(color, marker, markersize):
 def test_axes_labels_and_title():
     """Test axes labels and title methods."""
     plotter = AitoffPlotter(epoch=Time("2024-01-01T12:00:00"), show_ecliptic=False)
-    plotter.plot_ra_dec(ra=0*u.deg, dec=0*u.deg, label="Test")
+    plotter.plot_ra_dec(ra=0 * u.deg, dec=0 * u.deg, label="Test")
 
     # Test default title (uses epoch)
     plotter.set_title()
@@ -161,7 +156,7 @@ def test_aitoff_custom_axes():
     fig, ax = plt.subplots(figsize=(10, 6), subplot_kw={"projection": "aitoff"})
 
     plotter = AitoffPlotter(epoch=Time.now(), ax=ax, show_ecliptic=False)
-    plotter.plot_ra_dec(ra=0*u.deg, dec=0*u.deg, label="Test")
+    plotter.plot_ra_dec(ra=0 * u.deg, dec=0 * u.deg, label="Test")
 
     # Check that the same axes object is used
     assert plotter.ax is ax
@@ -173,9 +168,9 @@ def test_aitoff_custom_axes():
     [
         (0.0, 0.0),
         (np.pi, -np.pi),
-        (2*np.pi, 0.0),
-        (np.pi/2, -np.pi/2),
-        (3*np.pi/2, np.pi/2),
+        (2 * np.pi, 0.0),
+        (np.pi / 2, -np.pi / 2),
+        (3 * np.pi / 2, np.pi / 2),
     ],
 )
 def test_aitoff_convert_longitude_for_plot(longitude_rad, expected):
@@ -191,7 +186,7 @@ def test_aitoff_convert_longitude_for_plot_array():
     """Test _convert_longitude_for_plot with array input."""
     plotter = AitoffPlotter(epoch=Time.now(), show_ecliptic=False)
 
-    longitudes = np.array([0.0, np.pi, 2*np.pi, np.pi/2])
+    longitudes = np.array([0.0, np.pi, 2 * np.pi, np.pi / 2])
     result = plotter._convert_longitude_for_plot(longitudes)
 
     assert isinstance(result, np.ndarray)
@@ -203,9 +198,9 @@ def test_aitoff_multiple_points():
     plotter = AitoffPlotter(epoch=Time.now(), show_ecliptic=False)
 
     # Plot multiple points
-    plotter.plot_ra_dec(ra=0*u.deg, dec=0*u.deg, label="Point 1", color="red")
-    plotter.plot_ra_dec(ra=90*u.deg, dec=45*u.deg, label="Point 2", color="blue")
-    plotter.plot_ra_dec(ra=180*u.deg, dec=-30*u.deg, label="Point 3", color="green")
+    plotter.plot_ra_dec(ra=0 * u.deg, dec=0 * u.deg, label="Point 1", color="red")
+    plotter.plot_ra_dec(ra=90 * u.deg, dec=45 * u.deg, label="Point 2", color="blue")
+    plotter.plot_ra_dec(ra=180 * u.deg, dec=-30 * u.deg, label="Point 3", color="green")
 
     # Check that multiple lines exist
     lines = plotter.ax.lines
@@ -234,10 +229,10 @@ def test_aitoff_full_plot():
     )
 
     # Plot points at various locations
-    plotter.plot_ra_dec(ra=0*u.deg, dec=0*u.deg, label="Equator", color="yellow", markersize=10)
-    plotter.plot_ra_dec(ra=6*u.hourangle, dec=30*u.deg, label="NE", color="cyan", markersize=10)
-    plotter.plot_ra_dec(ra=12*u.hourangle, dec=-30*u.deg, label="South", color="orange", markersize=10)
-    plotter.plot_ra_dec(ra=18*u.hourangle, dec=60*u.deg, label="High Dec", color="red", markersize=12)
+    plotter.plot_ra_dec(ra=0 * u.deg, dec=0 * u.deg, label="Equator", color="yellow", markersize=10)
+    plotter.plot_ra_dec(ra=6 * u.hourangle, dec=30 * u.deg, label="NE", color="cyan", markersize=10)
+    plotter.plot_ra_dec(ra=12 * u.hourangle, dec=-30 * u.deg, label="South", color="orange", markersize=10)
+    plotter.plot_ra_dec(ra=18 * u.hourangle, dec=60 * u.deg, label="High Dec", color="red", markersize=12)
 
     # Apply all formatting
     plotter.set_title("Full Aitoff Plot Test")
@@ -251,11 +246,11 @@ def test_aitoff_full_plot():
 
 def test_aitoff_save():
     """Test save method."""
-    import tempfile
     import os
+    import tempfile
 
     plotter = AitoffPlotter(epoch=Time.now(), show_ecliptic=False)
-    plotter.plot_ra_dec(ra=0*u.deg, dec=0*u.deg, label="Test")
+    plotter.plot_ra_dec(ra=0 * u.deg, dec=0 * u.deg, label="Test")
 
     # Save to temporary file
     with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
@@ -278,11 +273,7 @@ def test_aitoff_save():
 )
 def test_aitoff_ecliptic_obliquity(ecliptic_obliquity):
     """Test different ecliptic obliquity values."""
-    plotter = AitoffPlotter(
-        epoch=Time.now(),
-        show_ecliptic=True,
-        ecliptic_obliquity=ecliptic_obliquity
-    )
+    plotter = AitoffPlotter(epoch=Time.now(), show_ecliptic=True, ecliptic_obliquity=ecliptic_obliquity)
 
     # Check that ecliptic was plotted
     lines = plotter.ax.lines
@@ -293,8 +284,8 @@ def test_aitoff_legend():
     """Test that legend works correctly."""
     plotter = AitoffPlotter(epoch=Time.now(), show_ecliptic=False)
 
-    plotter.plot_ra_dec(ra=0*u.deg, dec=0*u.deg, label="Point 1", color="red")
-    plotter.plot_ra_dec(ra=90*u.deg, dec=45*u.deg, label="Point 2", color="blue")
+    plotter.plot_ra_dec(ra=0 * u.deg, dec=0 * u.deg, label="Point 1", color="red")
+    plotter.plot_ra_dec(ra=90 * u.deg, dec=45 * u.deg, label="Point 2", color="blue")
 
     plotter.ax.legend()
     legend = plotter.ax.get_legend()
@@ -318,13 +309,7 @@ def test_aitoff_plot_spice_position():
     plotter = AitoffPlotter(epoch=Time.now(), show_ecliptic=False)
 
     # Plot Sun (should always be available)
-    line = plotter.plot_spice_position(
-        target="SUN",
-        observer="EARTH",
-        label="Sun",
-        color="yellow",
-        markersize=20
-    )
+    line = plotter.plot_spice_position(target="SUN", observer="EARTH", label="Sun", color="yellow", markersize=20)
 
     assert line is not None
     assert line.get_label() == "Sun"
