@@ -64,6 +64,7 @@ dependencies = [
     "pyerfa",
     "scipy >=1.4.0",
     "vispy >=0.16.0",
+    "spiceypy"
 ]
 dynamic = ["version", "description"]
 

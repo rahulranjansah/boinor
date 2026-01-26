@@ -22,6 +22,8 @@ class GabbardPlotter:
                     _, self._ax = plt.subplots(figsize=(6, 6))
             else:
                 _, self._ax = plt.subplots(figsize=(6, 6))
+                self._ax.set_facecolor((1.0, 1.0, 1.0, 1))
+                self._ax.figure.set_facecolor((1.0, 1.0, 1.0, 1))
 
         self._frame = None
         self._altitude_unit = altitude_unit

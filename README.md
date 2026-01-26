@@ -57,6 +57,7 @@ boinor requires the following Python packages:
 - [scipy](https://scipy.org/) for root finding and numerical propagation
 - [pandas](https://pandas.pydata.org/) for loading and processing data
 - [vispy](https://vispy.org/) for 3D visualization of DSK kernels
+- [spiceypy](https://spiceypy.readthedocs.io/) for SPICE kernel handling
 
 boinor is supported on Linux, macOS and Windows on Python 3.10 to 3.13.
 

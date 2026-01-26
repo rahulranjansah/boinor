@@ -42,6 +42,8 @@ class Matplotlib2D(OrbitPlotterBackend):
                     _, ax = plt.subplots(figsize=(6, 6))
             else:
                 _, ax = plt.subplots(figsize=(6, 6))
+                ax.set_facecolor((1.0, 1.0, 1.0, 1))
+                ax.figure.set_facecolor((1.0, 1.0, 1.0, 1))
         super().__init__(ax, self.__class__.__name__)
 
     @property
