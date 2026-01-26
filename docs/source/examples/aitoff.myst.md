@@ -46,7 +46,7 @@ from astropy.time import Time
 import numpy as np
 
 
-from boinor.plotting.aitoff import AitoffPlotter
+from boinor.plotting import AitoffPlotter
 ```
 
 The `AitoffPlotter` class can be initialized with various options. The simplest

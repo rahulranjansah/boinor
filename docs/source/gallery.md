@@ -26,5 +26,6 @@ the plotting utilities, insight on the {ref}`API <api-reference>` capabilities a
    /examples/detecting-events.myst.md
    /examples/loading-OMM-and-TLE-satellite-data.myst.md
    /examples/render-dsk-kernels.myst.md
+   /examples/aitoff.myst.md
 
 ```
