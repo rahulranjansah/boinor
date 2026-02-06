@@ -11,7 +11,7 @@ jobs:
       TOXENV: style
     steps:
       - checkout
-      - run: python -m pip install tox
+      - run: python -m pip install tox tox-uv
       - run: tox
 
   tests310:
@@ -85,7 +85,7 @@ jobs:
             apt-get update
             apt-get install -y --no-install-recommends \
               libgl1 libglx-mesa0 libgl1-mesa-dri libegl1-mesa-dev libgles2-mesa-dev libosmesa6 xvfb xauth
-      - run: python -m pip install tox
+      - run: python -m pip install tox tox-uv
       - run: xvfb-run -a tox
 
   tests313-coverage:
@@ -97,7 +97,7 @@ jobs:
       TOXENV: tests313-coverage
     steps:
       - checkout
-      - run: python -m pip install tox
+      - run: python -m pip install tox tox-uv
       - run: tox
       - run: python -m pip install codecov && codecov
 
